@@ -1,0 +1,248 @@
+{
+  "dataset": "BraTS2021",
+  "evaluation_type": "preliminary_held_out_cases",
+  "case_count": 10,
+  "model": "MONAI brats_mri_segmentation 0.5.4",
+  "results": [
+    {
+      "case_id": "BraTS2021_00000",
+      "prediction_file": "BraTS2021_00000_pred.nii.gz",
+      "seconds": 6.24,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.9152397401102065,
+        "TC": 0.9741239831189256,
+        "ET": 0.9332782745421915
+      },
+      "sensitivity": {
+        "WT": 0.9709798446906902,
+        "TC": 0.9680451550518339,
+        "ET": 0.8976505453545568
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00002",
+      "prediction_file": "BraTS2021_00002_pred.nii.gz",
+      "seconds": 6.137,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.7371457162197957,
+        "TC": 0.8949101658829476,
+        "ET": 0.7352933728380056
+      },
+      "sensitivity": {
+        "WT": 0.5913460024974553,
+        "TC": 0.8370726954927076,
+        "ET": 0.6138429664707623
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00003",
+      "prediction_file": "BraTS2021_00003_pred.nii.gz",
+      "seconds": 6.394,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.9754126617187817,
+        "TC": 0.9763490684428999,
+        "ET": 0.9228879310344827
+      },
+      "sensitivity": {
+        "WT": 0.969407188706053,
+        "TC": 0.9756426952201804,
+        "ET": 0.8828550222662048
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00005",
+      "prediction_file": "BraTS2021_00005_pred.nii.gz",
+      "seconds": 6.169,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.9468111244085502,
+        "TC": 0.9250615480074458,
+        "ET": 0.8540154088678701
+      },
+      "sensitivity": {
+        "WT": 0.9573579734418951,
+        "TC": 0.9620324306321684,
+        "ET": 0.8062379475140438
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00006",
+      "prediction_file": "BraTS2021_00006_pred.nii.gz",
+      "seconds": 6.16,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.971038179916318,
+        "TC": 0.9753406383992377,
+        "ET": 0.9138113265561043
+      },
+      "sensitivity": {
+        "WT": 0.9692990406856596,
+        "TC": 0.9851214535935635,
+        "ET": 0.8989715668481548
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00008",
+      "prediction_file": "BraTS2021_00008_pred.nii.gz",
+      "seconds": 6.143,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.8005546873280359,
+        "TC": 0.26721014492753625,
+        "ET": 0.5291214215202369
+      },
+      "sensitivity": {
+        "WT": 0.9849962084281226,
+        "TC": 0.9021406727828746,
+        "ET": 0.8617363344051447
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00009",
+      "prediction_file": "BraTS2021_00009_pred.nii.gz",
+      "seconds": 6.601,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.6446321955615636,
+        "TC": 0.9370739381227058,
+        "ET": 0.8838365896980461
+      },
+      "sensitivity": {
+        "WT": 0.5211088041379813,
+        "TC": 0.9581769436997319,
+        "ET": 0.8405405405405405
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00011",
+      "prediction_file": "BraTS2021_00011_pred.nii.gz",
+      "seconds": 6.163,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.9428900510076332,
+        "TC": 0.9267589685521643,
+        "ET": 0.8981446421809921
+      },
+      "sensitivity": {
+        "WT": 0.9389604468254873,
+        "TC": 0.9609349983989753,
+        "ET": 0.8876296375494493
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00012",
+      "prediction_file": "BraTS2021_00012_pred.nii.gz",
+      "seconds": 6.252,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.9633029036213251,
+        "TC": 0.8800634591044567,
+        "ET": 0.07276007215874924
+      },
+      "sensitivity": {
+        "WT": 0.9961866350276147,
+        "TC": 0.8775145829819654,
+        "ET": 0.5401785714285714
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    },
+    {
+      "case_id": "BraTS2021_00014",
+      "prediction_file": "BraTS2021_00014_pred.nii.gz",
+      "seconds": 6.202,
+      "device": "cuda",
+      "dice": {
+        "WT": 0.8284470654310587,
+        "TC": 0.5573342045083306,
+        "ET": 0.7952497952497952
+      },
+      "sensitivity": {
+        "WT": 0.7690964075290683,
+        "TC": 1.0,
+        "ET": 0.7594837700430191
+      },
+      "ground_truth_empty": {
+        "WT": false,
+        "TC": false,
+        "ET": false
+      }
+    }
+  ],
+  "summary": {
+    "WT": {
+      "mean_dice": 0.8725474325323269,
+      "std_dice": 0.10872480352897097,
+      "cases": 10,
+      "mean_sensitivity": 0.8668738551970027,
+      "sensitivity_cases": 10
+    },
+    "TC": {
+      "mean_dice": 0.831422611906665,
+      "std_dice": 0.22157526846967776,
+      "cases": 10,
+      "mean_sensitivity": 0.9426681627854,
+      "sensitivity_cases": 10
+    },
+    "ET": {
+      "mean_dice": 0.7538398834646474,
+      "std_dice": 0.2550590587396531,
+      "cases": 10,
+      "mean_sensitivity": 0.7989126902420447,
+      "sensitivity_cases": 10
+    }
+  },
+  "limitations": [
+    "Only the listed 10 cases were evaluated.",
+    "Pretraining overlap with evaluation cases cannot be ruled out.",
+    "Dice is 1.0 when both prediction and GT masks are empty.",
+    "Sensitivity is null when the GT region is empty.",
+    "Results are for research/teaching, not clinical validation."
+  ]
+}

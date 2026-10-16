@@ -1,0 +1,21 @@
+{
+  "dataset": "BraTS2021",
+  "purpose": "Preliminary patient-wise evaluation",
+  "case_ids": [
+    "BraTS2021_00000",
+    "BraTS2021_00002",
+    "BraTS2021_00003",
+    "BraTS2021_00005",
+    "BraTS2021_00006",
+    "BraTS2021_00008",
+    "BraTS2021_00009",
+    "BraTS2021_00011",
+    "BraTS2021_00012",
+    "BraTS2021_00014"
+  ],
+  "notes": [
+    "These are held-out evaluation cases for this run.",
+    "Pretrained model training-data overlap cannot be ruled out.",
+    "This evaluation is not clinical validation."
+  ]
+}

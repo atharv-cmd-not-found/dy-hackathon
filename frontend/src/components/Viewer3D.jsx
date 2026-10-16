@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RotateCcw } from 'lucide-react';
+import { CROSSHAIR_COLOR, REGION_COLORS } from './segmentationColors';
 
 /**
  * Viewer3D — Three.js GLB mesh viewer for brain segmentation.
@@ -17,13 +18,13 @@ import { RotateCcw } from 'lucide-react';
  */
 
 const REGIONS = [
-  { key: 'brain', label: 'Brain',   long: 'Brain tissue silhouette', color: 0xb8c8e0, opacity: 0.15, transparent: true,  roughness: 0.7, metalness: 0.0 },
-  { key: 'wt',    label: 'WT',      long: 'Whole Tumor (edema + core + enhancing)', color: 0xf59e0b, opacity: 0.70, transparent: true,  roughness: 0.3, metalness: 0.05 },
-  { key: 'tc',    label: 'TC',      long: 'Tumor Core (necrosis + enhancing)',       color: 0xef4444, opacity: 0.80, transparent: true,  roughness: 0.25, metalness: 0.05 },
-  { key: 'et',    label: 'ET',      long: 'Enhancing Tumor (active contrast rim)',   color: 0x06b6d4, opacity: 1.0,  transparent: false, roughness: 0.2,  metalness: 0.1  },
+  { key: 'brain', label: 'Brain',   long: 'Brain tissue silhouette', color: Number.parseInt(REGION_COLORS.brain.slice(1), 16), opacity: 0.15, transparent: true,  roughness: 0.7, metalness: 0.0 },
+  { key: 'wt',    label: 'WT',      long: 'Whole Tumor (edema + core + enhancing)', color: Number.parseInt(REGION_COLORS.wt.slice(1), 16), opacity: 0.70, transparent: true,  roughness: 0.3, metalness: 0.05 },
+  { key: 'tc',    label: 'TC',      long: 'Tumor Core (necrosis + enhancing)',       color: Number.parseInt(REGION_COLORS.tc.slice(1), 16), opacity: 0.80, transparent: true,  roughness: 0.25, metalness: 0.05 },
+  { key: 'et',    label: 'ET',      long: 'Enhancing Tumor (active contrast rim)',   color: Number.parseInt(REGION_COLORS.et.slice(1), 16), opacity: 1.0,  transparent: false, roughness: 0.2,  metalness: 0.1  },
 ];
 
-const CSS_COLOR = { brain: '#b8c8e0', wt: '#f59e0b', tc: '#ef4444', et: '#06b6d4' };
+const CSS_COLOR = REGION_COLORS;
 
 export default function Viewer3D({ meshes, crosshairMM }) {
   const wrapRef     = useRef(null);
@@ -117,7 +118,9 @@ export default function Viewer3D({ meshes, crosshairMM }) {
 
     // ── Crosshair sphere (inside group, so it inherits the rotation) ─────────
     const mkGeo = new THREE.SphereGeometry(3, 16, 16);
-    const mkMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
+    const mkMat = new THREE.MeshBasicMaterial({
+      color: Number.parseInt(CROSSHAIR_COLOR.slice(1), 16),
+    });
     const marker = new THREE.Mesh(mkGeo, mkMat);
     marker.visible = false;
     group.add(marker);

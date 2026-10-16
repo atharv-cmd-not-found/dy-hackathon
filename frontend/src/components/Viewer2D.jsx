@@ -1,6 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Niivue } from '@niivue/niivue';
 import { Layers } from 'lucide-react';
+import { CROSSHAIR_COLOR, REGION_COLORS } from './segmentationColors';
+
+const toRgb = (hex) => {
+  const value = Number.parseInt(hex.slice(1), 16);
+  return [(value >> 16) & 255, (value >> 8) & 255, value & 255];
+};
+
+const rgba = (hex, alpha = 255) => [...toRgb(hex), alpha];
+
+const SEGMENTATION_LABELS = {
+  lut: new Uint8ClampedArray([
+    ...rgba('#000000', 0),
+    ...rgba(REGION_COLORS.tc),
+    ...rgba(REGION_COLORS.wt),
+    ...rgba('#000000', 0),
+    ...rgba(REGION_COLORS.et),
+  ]),
+  min: 0,
+  max: 4,
+  labels: ['Background', 'TC · Core', 'WT · Edema', 'Unused', 'ET · Enhancing'],
+};
 
 /**
  * Viewer2D — NiiVue-powered multiplanar MRI viewer.
@@ -64,7 +85,7 @@ export default function Viewer2D({ t1Url, predUrl, crosshair, onCrosshairChange 
       // ── Create NiiVue ──────────────────────────────────────────────────────
       const nv = new Niivue({
         backColor:         [0.06, 0.09, 0.16, 1],   // #0f172a
-        crosshairColor:    [0.06, 0.71, 0.83, 0.9], // cyan
+        crosshairColor:    [...toRgb(CROSSHAIR_COLOR).map(value => value / 255), 0.9],
         crosshairWidth:    1.5,
         show3Dcrosshair:   false,
         isColorbar:        false,
@@ -92,10 +113,20 @@ export default function Viewer2D({ t1Url, predUrl, crosshair, onCrosshairChange 
         { url: t1, name: slotName(t1), colorMap: 'gray', opacity: 1.0 },
       ];
       if (pred) {
-        volumes.push({ url: pred, name: slotName(pred), colorMap: 'actc', opacity: 0.65 });
+        volumes.push({
+          url: pred,
+          name: slotName(pred),
+          colorMap: 'gray',
+          opacity: 0.65,
+        });
       }
 
       await nv.loadVolumes(volumes);
+      if (pred && nv.volumes[1]) {
+        // loadVolumes currently does not forward colormapLabel in its URL options.
+        nv.volumes[1].colormapLabel = SEGMENTATION_LABELS;
+        nv.drawScene();
+      }
       nv.setSliceType(sliceType);
     } catch (err) {
       console.error('[Viewer2D] NiiVue error:', err);
@@ -258,6 +289,43 @@ export default function Viewer2D({ t1Url, predUrl, crosshair, onCrosshairChange 
           }}>RAS+ · mm</span>
         )}
       </div>
+
+      {predUrl && (
+        <div style={{
+          padding: '0.4rem 0.85rem',
+          background: '#0f172a',
+          borderTop: '1px solid rgba(255,255,255,0.05)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.9rem',
+          flexWrap: 'wrap',
+          flexShrink: 0,
+        }}>
+          {[
+            { label: 'WT · Edema', color: REGION_COLORS.wt },
+            { label: 'TC · Core', color: REGION_COLORS.tc },
+            { label: 'ET · Enhancing', color: REGION_COLORS.et },
+          ].map(({ label, color }) => (
+            <div key={label} style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.3rem',
+              fontSize: '0.68rem',
+              color: '#cbd5e1',
+            }}>
+              <span style={{
+                width: 8,
+                height: 8,
+                borderRadius: '2px',
+                background: color,
+                display: 'inline-block',
+              }} />
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
