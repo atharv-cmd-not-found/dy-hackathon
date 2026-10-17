@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  neuroscope:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: neuroscope-3d:latest
+    container_name: neuroscope_app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DATA_DIR=/app/data
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - neuroscope_data:/app/data
+      - ./models:/app/models
+    # Enable NVIDIA GPU acceleration when available
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  neuroscope_data:
