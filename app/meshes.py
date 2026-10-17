@@ -74,52 +74,108 @@ def generate_case_meshes(
     pred_data: np.ndarray,
     t1_data: np.ndarray,
     affine: np.ndarray,
-    output_dir: Path
+    output_dir: Path,
+    anat_data: Optional[np.ndarray] = None
 ) -> Dict[str, Optional[Dict[str, Any]]]:
     """
-    Generates all 4 standard 3D meshes for a case:
-      - brain.glb : Patient skull-stripped brain contour (step_size=2 for performance)
-      - wt.glb    : Whole Tumor surface
-      - tc.glb    : Tumor Core surface
-      - et.glb    : Enhancing Tumor surface
+    Generates 3D surface meshes in World Space (RAS+ mm) for Three.js:
+      - brain.glb      : High-fidelity patient skull-stripped brain contour
+      - cerebrum.glb   : Major cerebral hemispheres (when atlas parcellation available)
+      - cerebellum.glb : Cerebellum division (when atlas parcellation available)
+      - brainstem.glb  : Brainstem division (when atlas parcellation available)
+      - ed.glb         : Peritumoral Edema (Label 2 · non-overlapping)
+      - ncr.glb        : Necrotic/Non-enhancing Core (Label 1 · non-overlapping)
+      - et.glb         : Active Enhancing Tumour (Label 4 · non-overlapping)
+      - wt.glb         : Whole Tumour cumulative shell (NCR + ED + ET)
+      - tc.glb         : Tumour Core cumulative volume (NCR + ET)
     """
     output_dir.mkdir(parents=True, exist_ok=True)
-    masks = get_region_masks(pred_data)
-    
-    # 1. Brain surface mesh (T1 non-zero tissue)
-    brain_mask = t1_data > 0.0
-    brain_mesh = mask_to_mesh(brain_mask, affine, smooth_sigma=1.0, step_size=2)
-    
     results: Dict[str, Optional[Dict[str, Any]]] = {}
-    
-    if brain_mesh is not None:
-        brain_path = output_dir / "brain.glb"
-        export_mesh_to_glb(brain_mesh, brain_path)
-        results["brain"] = {
-            "path": str(brain_path),
-            "filename": "brain.glb",
-            "vertices": len(brain_mesh.vertices),
-            "faces": len(brain_mesh.faces)
-        }
-    else:
-        results["brain"] = None
-        
-    # 2. Tumor regions: WT, TC, ET
-    for region_name in ["WT", "TC", "ET"]:
-        reg_mask = masks[region_name]
-        reg_mesh = mask_to_mesh(reg_mask, affine, smooth_sigma=0.8, step_size=1)
-        
-        if reg_mesh is not None:
-            mesh_filename = f"{region_name.lower()}.glb"
-            mesh_path = output_dir / mesh_filename
-            export_mesh_to_glb(reg_mesh, mesh_path)
-            results[region_name.lower()] = {
-                "path": str(mesh_path),
-                "filename": mesh_filename,
-                "vertices": len(reg_mesh.vertices),
-                "faces": len(reg_mesh.faces)
+
+    # Helper to export and record mesh metadata
+    def _export_and_record(mesh: Optional[trimesh.Trimesh], name: str):
+        if mesh is not None:
+            filename = f"{name}.glb"
+            dest = output_dir / filename
+            export_mesh_to_glb(mesh, dest)
+            results[name] = {
+                "path": str(dest),
+                "filename": filename,
+                "vertices": len(mesh.vertices),
+                "faces": len(mesh.faces)
             }
         else:
-            results[region_name.lower()] = None
-            
+            results[name] = None
+
+    # 1. Whole Brain Surface Mesh (t1 > 0 with gentle smoothing to preserve gyral sulci)
+    brain_mask = t1_data > 0.0
+    brain_mesh = mask_to_mesh(brain_mask, affine, smooth_sigma=0.7, step_size=2)
+    _export_and_record(brain_mesh, "brain")
+
+    # 2. The 3 Anatomical Brain Divisions (Cerebrum, Cerebellum, Brainstem) from SRI24 atlas
+    if anat_data is not None and np.any(anat_data > 0):
+        try:
+            labels_path = Path(__file__).resolve().parent / "localization" / "atlas" / "sri24_labels.json"
+            if labels_path.exists():
+                import json
+                with open(labels_path, "r", encoding="utf-8") as lf:
+                    atlas_info = json.load(lf)
+                labels_dict = atlas_info.get("labels", {})
+
+                cerebrum_ids = []
+                cerebellum_ids = []
+                brainstem_ids = []
+
+                for k, v in labels_dict.items():
+                    if not k.isdigit():
+                        continue
+                    lid = int(k)
+                    lobe_str = str(v.get("lobe", ""))
+                    name_str = str(v.get("name", ""))
+                    if "Cerebell" in lobe_str or "Cerebell" in name_str:
+                        cerebellum_ids.append(lid)
+                    elif "Brainstem" in lobe_str or "Brainstem" in name_str or "Pons" in name_str or "Medulla" in name_str:
+                        brainstem_ids.append(lid)
+                    else:
+                        cerebrum_ids.append(lid)
+
+                # Generate Cerebrum mesh
+                mask_cerebrum = np.isin(anat_data, cerebrum_ids)
+                m_cerebrum = mask_to_mesh(mask_cerebrum, affine, smooth_sigma=0.8, step_size=2)
+                _export_and_record(m_cerebrum, "cerebrum")
+
+                # Generate Cerebellum mesh
+                mask_cerebellum = np.isin(anat_data, cerebellum_ids)
+                m_cerebellum = mask_to_mesh(mask_cerebellum, affine, smooth_sigma=0.8, step_size=2)
+                _export_and_record(m_cerebellum, "cerebellum")
+
+                # Generate Brainstem mesh
+                mask_brainstem = np.isin(anat_data, brainstem_ids)
+                m_brainstem = mask_to_mesh(mask_brainstem, affine, smooth_sigma=0.8, step_size=2)
+                _export_and_record(m_brainstem, "brainstem")
+        except Exception:
+            # Non-blocking: proceed if atlas parcellation partitioning encounters any issue
+            pass
+
+    # 3. The 3 Distinct Non-Overlapping Physiological Tumour Compartments
+    # Part 1: Edema (Label 2)
+    m_ed = mask_to_mesh(pred_data == 2, affine, smooth_sigma=0.8, step_size=1)
+    _export_and_record(m_ed, "ed")
+
+    # Part 2: Necrotic Core (Label 1)
+    m_ncr = mask_to_mesh(pred_data == 1, affine, smooth_sigma=0.8, step_size=1)
+    _export_and_record(m_ncr, "ncr")
+
+    # Part 3: Enhancing Tumour (Label 4)
+    m_et = mask_to_mesh(pred_data == 4, affine, smooth_sigma=0.8, step_size=1)
+    _export_and_record(m_et, "et")
+
+    # 4. The Cumulative Standard BraTS Evaluation Meshes
+    masks = get_region_masks(pred_data)
+    m_wt = mask_to_mesh(masks["WT"], affine, smooth_sigma=0.8, step_size=1)
+    _export_and_record(m_wt, "wt")
+
+    m_tc = mask_to_mesh(masks["TC"], affine, smooth_sigma=0.8, step_size=1)
+    _export_and_record(m_tc, "tc")
+
     return results

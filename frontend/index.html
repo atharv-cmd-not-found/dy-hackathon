@@ -14,8 +14,8 @@
         overflow: hidden;
         background: #f8fafc; /* --bg-main */
       }
-      /* Prevent default white canvas background from showing */
-      canvas { background: transparent !important; }
+      /* Guarantee dark slate background for medical WebGL canvases so no white flash or transparency leak shows */
+      canvas { background: #0f172a !important; }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

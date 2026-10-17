@@ -51,9 +51,20 @@ def init_db() -> None:
             model_info TEXT,
             commit_hash TEXT,
             finished_at TEXT,
+            anatomy TEXT,
+            localization TEXT,
             FOREIGN KEY (case_id) REFERENCES cases(id) ON DELETE CASCADE
         );
         """)
+        # Safe migration if table already exists without anatomy/localization column
+        try:
+            cursor.execute("ALTER TABLE results ADD COLUMN anatomy TEXT;")
+        except sqlite3.OperationalError:
+            pass
+        try:
+            cursor.execute("ALTER TABLE results ADD COLUMN localization TEXT;")
+        except sqlite3.OperationalError:
+            pass
         conn.commit()
 
 
@@ -147,17 +158,19 @@ def save_case_results(
     model_info: Dict[str, Any],
     commit_hash: str = "local",
     expert_volumes: Optional[Dict[str, Any]] = None,
-    agreement: Optional[Dict[str, Any]] = None
+    agreement: Optional[Dict[str, Any]] = None,
+    anatomy: Optional[Dict[str, Any]] = None,
+    localization: Optional[Dict[str, Any]] = None
 ) -> None:
-    """Saves completed segmentation, volumes, and metrics into the results table."""
+    """Saves completed segmentation, volumes, anatomy, and localization into the results table."""
     now_iso = datetime.now(timezone.utc).isoformat()
     with get_db_connection() as conn:
         cursor = conn.cursor()
         cursor.execute("""
         INSERT OR REPLACE INTO results (
             case_id, volumes, expert_volumes, agreement, laterality,
-            model_info, commit_hash, finished_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            model_info, commit_hash, finished_at, anatomy, localization
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             case_id,
             json.dumps(volumes),
@@ -166,8 +179,20 @@ def save_case_results(
             json.dumps(laterality),
             json.dumps(model_info),
             commit_hash,
-            now_iso
+            now_iso,
+            json.dumps(anatomy or {}),
+            json.dumps(localization or {})
         ))
+        conn.commit()
+
+
+def update_case_localization(case_id: str, localization: Dict[str, Any]) -> None:
+    """Updates only the localization JSON for a case in the results table."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+        UPDATE results SET localization = ? WHERE case_id = ?
+        """, (json.dumps(localization), case_id))
         conn.commit()
 
 
@@ -191,6 +216,18 @@ def get_case(case_id: str) -> Optional[Dict[str, Any]]:
         res_row = cursor.fetchone()
         if res_row:
             res = dict(res_row)
+            anatomy_val = None
+            if "anatomy" in res and res["anatomy"]:
+                try:
+                    anatomy_val = json.loads(res["anatomy"])
+                except Exception:
+                    anatomy_val = None
+            localization_val = None
+            if "localization" in res and res["localization"]:
+                try:
+                    localization_val = json.loads(res["localization"])
+                except Exception:
+                    localization_val = None
             case["results"] = {
                 "volumes": json.loads(res["volumes"] or "{}"),
                 "expert_volumes": json.loads(res["expert_volumes"] or "{}"),
@@ -198,7 +235,9 @@ def get_case(case_id: str) -> Optional[Dict[str, Any]]:
                 "laterality": json.loads(res["laterality"] or "{}"),
                 "model_info": json.loads(res["model_info"] or "{}"),
                 "commit_hash": res["commit_hash"],
-                "finished_at": res["finished_at"]
+                "finished_at": res["finished_at"],
+                "anatomy": anatomy_val,
+                "localization": localization_val
             }
         else:
             case["results"] = None

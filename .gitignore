@@ -11,8 +11,11 @@ __pycache__/
 .coverage
 .coverage.*
 htmlcov/
+coverage/
 .tox/
 .nox/
+*.egg-info/
+pip-wheel-metadata/
 
 # =========================
 # Python environments
@@ -39,7 +42,10 @@ cases/
 datasets/
 BraTSData/
 *.db
+*.db-*
+*.sqlite
 *.sqlite3
+*.sqlite3-*
 
 # Medical imaging files
 *.nii
@@ -79,8 +85,10 @@ node_modules/
 frontend/node_modules/
 frontend/dist/
 frontend/dist-ssr/
+frontend/.vite/
 *.local
 .npm/
+*.tsbuildinfo
 
 # =========================
 # Logs

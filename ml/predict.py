@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import time
 from pathlib import Path
 from typing import Optional
@@ -25,7 +26,7 @@ DEFAULT_WEIGHTS = (
 
 def probabilities_to_labels(
     pred: np.ndarray,
-    threshold: float = 0.5,
+    threshold: float | tuple[float, float, float] = 0.5,
 ) -> np.ndarray:
     """
     Convert model probabilities to BraTS label IDs.
@@ -52,9 +53,18 @@ def probabilities_to_labels(
     if not np.isfinite(pred).all():
         raise ValueError("Prediction contains NaN or infinite values.")
 
-    tc = pred[0] > threshold
-    wt = pred[1] > threshold
-    et = pred[2] > threshold
+    if isinstance(threshold, (int, float)):
+        tc_threshold = wt_threshold = et_threshold = float(threshold)
+    else:
+        if len(threshold) != 3:
+            raise ValueError("threshold tuple must be (TC, WT, ET)")
+        tc_threshold, wt_threshold, et_threshold = map(float, threshold)
+    if not all(0.0 < value < 1.0 for value in (tc_threshold, wt_threshold, et_threshold)):
+        raise ValueError("All thresholds must be between 0 and 1")
+
+    tc = pred[0] > tc_threshold
+    wt = pred[1] > wt_threshold
+    et = pred[2] > et_threshold
 
     # Ensure nested regions.
     tc = tc | et
@@ -85,6 +95,17 @@ class Segmenter:
         device: Optional[str] = None,
     ):
         self.weights = Path(weights).resolve()
+        # Validation-calibrated per-region thresholds can be configured without
+        # changing model weights. Keep 0.50 defaults until calibrated on labels.
+        
+        self.thresholds = (
+            float(os.getenv("NEUROSCOPE_TC_THRESHOLD", "0.65")),
+            float(os.getenv("NEUROSCOPE_WT_THRESHOLD", "0.55")),
+            float(os.getenv("NEUROSCOPE_ET_THRESHOLD", "0.45")),
+        )
+
+        if not all(0.0 < value < 1.0 for value in self.thresholds):
+            raise ValueError("NEUROSCOPE_*_THRESHOLD values must be between 0 and 1")
 
         if not self.weights.is_file():
             raise FileNotFoundError(
@@ -323,7 +344,7 @@ class Segmenter:
 
         labels = probabilities_to_labels(
             probabilities_original,
-            threshold=0.5,
+            threshold=self.thresholds,
         )
 
         if out_path is None:

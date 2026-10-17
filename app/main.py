@@ -24,6 +24,8 @@ from app.report import generate_html_report
 from ml.predict import Segmenter
 
 from typing import Optional
+import nibabel as nib
+import numpy as np
 
 # Global worker & inference lock (ensures single-case GPU execution)
 worker_executor = ThreadPoolExecutor(max_workers=1)
@@ -133,13 +135,22 @@ async def submit_demo_case():
     import shutil
     fixtures_dir = Path(__file__).resolve().parent.parent / "tests" / "fixtures"
     kuruk_dir = Path(__file__).resolve().parent.parent.parent
+    brats_dir = kuruk_dir / "BraTSData" / "BraTS2021_00012"
     
-    brats_map = {
-        "t1": kuruk_dir / "BraTS2021_00012_t1.nii.gz",
-        "t1gd": kuruk_dir / "BraTS2021_00012_t1ce.nii.gz",
-        "t2": kuruk_dir / "BraTS2021_00012_t2.nii.gz",
-        "flair": kuruk_dir / "BraTS2021_00012_flair.nii.gz",
-    }
+    if brats_dir.exists() and (brats_dir / "BraTS2021_00012_t1.nii.gz").exists():
+        brats_map = {
+            "t1": brats_dir / "BraTS2021_00012_t1.nii.gz",
+            "t1gd": brats_dir / "BraTS2021_00012_t1ce.nii.gz",
+            "t2": brats_dir / "BraTS2021_00012_t2.nii.gz",
+            "flair": brats_dir / "BraTS2021_00012_flair.nii.gz",
+        }
+    else:
+        brats_map = {
+            "t1": kuruk_dir / "BraTS2021_00012_t1.nii.gz",
+            "t1gd": kuruk_dir / "BraTS2021_00012_t1ce.nii.gz",
+            "t2": kuruk_dir / "BraTS2021_00012_t2.nii.gz",
+            "flair": kuruk_dir / "BraTS2021_00012_flair.nii.gz",
+        }
     use_brats = all(p.exists() for p in brats_map.values())
 
     case_id = f"demo-{uuid.uuid4().hex[:8]}"
@@ -277,15 +288,49 @@ async def get_case_status(case_id: str):
         files_dict["pred_nii"] = f"/api/cases/{case_id}/files/pred.nii.gz"
     if (case_dir / "expert.nii.gz").exists():
         files_dict["expert_nii"] = f"/api/cases/{case_id}/files/expert.nii.gz"
+    if (case_dir / "anatomy.nii.gz").exists():
+        files_dict["anatomy_nii"] = f"/api/cases/{case_id}/files/anatomy.nii.gz"
+    if (case_dir / "anatomy_lookup.json").exists():
+        files_dict["anatomy_json"] = f"/api/cases/{case_id}/anatomy"
         
     meshes_dict = {}
-    for region in ["brain", "wt", "tc", "et"]:
+    for region in ["brain", "cerebrum", "cerebellum", "brainstem", "wt", "tc", "et", "ed", "ncr"]:
         glb_file = mesh_dir / f"{region}.glb"
         if glb_file.exists():
             meshes_dict[region] = f"/api/cases/{case_id}/meshes/{region}.glb"
             
     results_data = case.get("results") or {}
     
+    anatomy_data = results_data.get("anatomy")
+    if not anatomy_data and (case_dir / "anatomy_lookup.json").exists():
+        try:
+            anatomy_data = json.loads((case_dir / "anatomy_lookup.json").read_text(encoding="utf-8"))
+        except Exception:
+            anatomy_data = None
+
+    # Spatial meta resolution
+    t1_path = case_dir / "t1.nii.gz"
+    spatial_meta = None
+    if t1_path.exists():
+        try:
+            import nibabel as nib
+            t1_hdr_img = nib.load(str(t1_path))
+            spatial_meta = {
+                "shape": list(t1_hdr_img.shape[:3]),
+                "zooms": [round(float(z), 3) for z in t1_hdr_img.header.get_zooms()[:3]],
+                "voxel_volume_mm3": case.get("voxel_volume_mm3", 1.0),
+                "affine": t1_hdr_img.affine.tolist()
+            }
+        except Exception:
+            pass
+    if not spatial_meta:
+        spatial_meta = {
+            "shape": case.get("shape", [240, 240, 155]),
+            "zooms": case.get("zooms", [1.0, 1.0, 1.0]),
+            "voxel_volume_mm3": case.get("voxel_volume_mm3", 1.0),
+            "affine": [[-1.0, 0.0, 0.0, 0.0], [0.0, -1.0, 0.0, 239.0], [0.0, 0.0, 1.0, 0.0], [0.0, 0.0, 0.0, 1.0]]
+        }
+            
     response_payload = {
         "status": res_status,
         "stage": case.get("stage"),
@@ -299,15 +344,135 @@ async def get_case_status(case_id: str):
         },
         "files": files_dict,
         "meshes": meshes_dict,
+        "spatial_meta": spatial_meta,
         "volumes": results_data.get("volumes", {}),
         "laterality": results_data.get("laterality", {}),
         "expert_volumes": results_data.get("expert_volumes"),
         "agreement": results_data.get("agreement"),
+        "anatomy": anatomy_data,
+        "localization": results_data.get("localization") or (
+            json.loads((case_dir / "localization.json").read_text(encoding="utf-8"))
+            if (case_dir / "localization.json").exists() else None
+        ),
         "stage_seconds": case.get("stage_seconds", {}),
         "warnings": case.get("warnings", []),
         "disclaimer": "Research and teaching prototype. Suspected tumour regions predicted by the model; estimated volumes. Not a clinical diagnosis."
     }
     return response_payload
+
+
+@app.get("/api/cases/{case_id}/localization")
+async def get_case_localization(case_id: str):
+    """
+    Returns anatomical localization for a case, including mode (A or B),
+    atlas metadata, per-region table, primary/secondary regions, summary paragraphs,
+    and the three trainee Answer Cards.
+    """
+    case = get_case(case_id)
+    if not case:
+        raise HTTPException(status_code=404, detail="Case record not found.")
+
+    case_dir = CASES_DIR / case_id
+    results_data = case.get("results") or {}
+    localization_data = results_data.get("localization")
+
+    if not localization_data:
+        loc_file = case_dir / "localization.json"
+        if loc_file.exists():
+            try:
+                localization_data = json.loads(loc_file.read_text(encoding="utf-8"))
+            except Exception:
+                localization_data = None
+
+    if not localization_data:
+        # Dynamically compute from stored pred and t1gd files
+        pred_file = case_dir / "pred.nii.gz"
+        t1gd_file = case_dir / "t1gd.nii.gz"
+        if pred_file.exists() and t1gd_file.exists():
+            try:
+                from app.localization.anatomical_mapper import AnatomicalMapper
+                from app.localization.report_generator import generate_localization_report_text
+                from app.db import update_case_localization
+                pred_img = nib.load(str(pred_file))
+                pred_data = np.asanyarray(pred_img.dataobj)
+                t1gd_img = nib.load(str(t1gd_file))
+                t1gd_data = np.asanyarray(t1gd_img.dataobj)
+                mapper = AnatomicalMapper()
+                loc_res = mapper.localize_case(
+                    pred_data=pred_data,
+                    t1gd_data=t1gd_data,
+                    affine=pred_img.affine,
+                    header=pred_img.header
+                )
+                loc_dict = loc_res.to_dict()
+                loc_dict["report_sentences"] = generate_localization_report_text(loc_dict)
+                localization_data = loc_dict
+                (case_dir / "localization.json").write_text(json.dumps(localization_data, indent=2), encoding="utf-8")
+                update_case_localization(case_id, localization_data)
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"Failed to compute localization: {e}")
+        else:
+            raise HTTPException(status_code=404, detail="Segmentation files not found for localization.")
+
+    return JSONResponse(
+        content=localization_data,
+        headers={"Access-Control-Allow-Origin": "*", "Cache-Control": "public, max-age=3600"}
+    )
+
+
+@app.post("/api/cases/{case_id}/localize")
+async def recompute_case_localization(case_id: str):
+    """
+    Idempotently recomputes localization from the stored segmentation mask and scans.
+    Updates the database and localization.json artifact.
+    """
+    case = get_case(case_id)
+    if not case:
+        raise HTTPException(status_code=404, detail="Case record not found.")
+
+    case_dir = CASES_DIR / case_id
+    pred_file = case_dir / "pred.nii.gz"
+    t1gd_file = case_dir / "t1gd.nii.gz"
+    if not pred_file.exists() or not t1gd_file.exists():
+        raise HTTPException(status_code=404, detail="Segmentation scans not found on server for re-localization.")
+
+    try:
+        from app.localization.anatomical_mapper import AnatomicalMapper
+        from app.localization.report_generator import generate_localization_report_text
+        from app.db import update_case_localization
+        pred_img = nib.load(str(pred_file))
+        pred_data = np.asanyarray(pred_img.dataobj)
+        t1gd_img = nib.load(str(t1gd_file))
+        t1gd_data = np.asanyarray(t1gd_img.dataobj)
+        mapper = AnatomicalMapper()
+        loc_res = mapper.localize_case(
+            pred_data=pred_data,
+            t1gd_data=t1gd_data,
+            affine=pred_img.affine,
+            header=pred_img.header
+        )
+        loc_dict = loc_res.to_dict()
+        loc_dict["report_sentences"] = generate_localization_report_text(loc_dict)
+        (case_dir / "localization.json").write_text(json.dumps(loc_dict, indent=2), encoding="utf-8")
+        update_case_localization(case_id, loc_dict)
+        return JSONResponse(content=loc_dict, headers={"Access-Control-Allow-Origin": "*"})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to recompute localization: {e}")
+
+
+@app.get("/api/cases/{case_id}/anatomy")
+async def get_case_anatomy(case_id: str):
+    """
+    Serves anatomical atlas label definitions, provenance, and regional involvement.
+    """
+    case_dir = CASES_DIR / case_id
+    lookup_file = case_dir / "anatomy_lookup.json"
+    if not lookup_file.exists():
+        raise HTTPException(status_code=404, detail="Anatomical labels not found for this case.")
+    return JSONResponse(
+        content=json.loads(lookup_file.read_text(encoding="utf-8")),
+        headers={"Access-Control-Allow-Origin": "*", "Cache-Control": "public, max-age=3600"}
+    )
 
 
 @app.get("/api/cases/{case_id}/report", response_class=HTMLResponse)
@@ -320,6 +485,7 @@ async def get_case_report(case_id: str):
     if not case:
         raise HTTPException(status_code=404, detail="Case record not found.")
         
+    case_dir = CASES_DIR / case_id
     results_data = case.get("results") or {}
     case_payload = {
         "status": case.get("status"),
@@ -342,6 +508,14 @@ async def get_case_report(case_id: str):
         "laterality": results_data.get("laterality", {}),
         "expert_volumes": results_data.get("expert_volumes"),
         "agreement": results_data.get("agreement"),
+        "anatomy": results_data.get("anatomy") or (
+            json.loads((case_dir / "anatomy_lookup.json").read_text(encoding="utf-8"))
+            if (case_dir / "anatomy_lookup.json").exists() else None
+        ),
+        "localization": results_data.get("localization") or (
+            json.loads((case_dir / "localization.json").read_text(encoding="utf-8"))
+            if (case_dir / "localization.json").exists() else None
+        ),
         "stage_seconds": case.get("stage_seconds", {}),
         "warnings": case.get("warnings", []),
         "commit_hash": results_data.get("commit_hash") or git_commit_hash

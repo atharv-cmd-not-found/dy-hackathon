@@ -1,17 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import UploadView from './components/UploadView';
 import ProcessingView from './components/ProcessingView';
 import Viewer2D from './components/Viewer2D';
 import Viewer3D from './components/Viewer3D';
 import MetricsPanel from './components/MetricsPanel';
+import LocalizationView from './components/LocalizationView';
 import EvalView from './components/EvalView';
 import Footer from './components/Footer';
+import { Layers, UploadCloud, Sparkles } from 'lucide-react';
+import { loadAnatomyData, queryAnatomyValue } from './components/anatomyVolume';
+import { getCachedVoxelIntensitySync, getVoxelIntensity } from './components/mriVolumeCache';
 
 export default function App() {
   const [currentView, setCurrentView] = useState(() => {
     const hash = window.location.hash.replace('#', '');
-    return ['upload', 'processing', 'viewer', 'eval'].includes(hash) ? hash : 'upload';
+    return ['upload', 'processing', 'viewer', 'localization', 'eval'].includes(hash) ? hash : 'upload';
   });
   const [activeCaseId, setActiveCaseId] = useState(null);
   const [caseData, setCaseData] = useState(null);
@@ -19,14 +23,121 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDemoLoading, setIsDemoLoading] = useState(false);
 
-  const [crosshair, setCrosshair] = useState({ mm: [0, 0, 0], vox: [0, 0, 0] });
+  const [crosshair, setCrosshair] = useState({
+    mm: [0, 0, 0],
+    vox: [0, 0, 0],
+    anatVal: 0,
+    predVal: 0,
+    intensities: {},
+    regionName: 'Click slice or 3D mesh to inspect',
+    hemisphere: null,
+    lobe: null,
+    isPinned: false
+  });
+  const [activeUnderlay, setActiveUnderlay] = useState('t1');
   const pollIntervalRef = useRef(null);
+  const nvInstanceRef = useRef(null);
+  const anatDataRef = useRef(null);
 
-  // Synchronize browser history and hash for back/forward buttons
-  const navigateTo = (view, replace = false) => {
+  // Pre-load anatomy NIfTI when case data is ready
+  useEffect(() => {
+    if (caseData?.files?.anatomy_nii) {
+      loadAnatomyData(caseData.files.anatomy_nii).then((res) => {
+        anatDataRef.current = res;
+      });
+    }
+  }, [caseData?.files?.anatomy_nii]);
+
+  // Reset location when active case changes
+  useEffect(() => {
+    setCrosshair({
+      mm: [0, 0, 0],
+      vox: [0, 0, 0],
+      anatVal: 0,
+      predVal: 0,
+      intensities: {},
+      regionName: 'Click slice or 3D mesh to inspect',
+      hemisphere: null,
+      lobe: null,
+      isPinned: false
+    });
+    setActiveUnderlay('t1');
+    nvInstanceRef.current = null;
+  }, [activeCaseId]);
+
+  const caseDataRef       = useRef(caseData);
+  const activeUnderlayRef = useRef(activeUnderlay);
+  caseDataRef.current     = caseData;
+  activeUnderlayRef.current = activeUnderlay;
+
+  // Query voxel intensities & labels across all loaded NiiVue volumes
+  const queryVoxel = useCallback((vox, mm) => {
+    const nv = nvInstanceRef.current;
+    const curUnderlay = activeUnderlayRef.current;
+    const curCase = caseDataRef.current;
+    const intensities = {};
+    let predVal = 0;
+
+    if (nv && nv.volumes && nv.volumes.length > 0) {
+      const baseVol = nv.volumes[0];
+      if (baseVol) {
+        intensities[curUnderlay] = baseVol.getValue(vox[0], vox[1], vox[2]);
+      }
+      const predVol = nv.volumes.find(v => (v.name || '').toLowerCase().includes('pred'));
+      if (predVol) {
+        predVal = Math.round(predVol.getValue(vox[0], vox[1], vox[2]) || 0);
+      }
+    }
+
+    // Populate other modalities via cache
+    if (curCase?.files) {
+      ['t1', 't1gd', 't2', 'flair'].forEach((mod) => {
+        if (mod === curUnderlay) return;
+        const url = curCase.files[mod];
+        if (url) {
+          const cached = getCachedVoxelIntensitySync(url, vox);
+          if (cached !== null) {
+            intensities[mod] = cached;
+          } else {
+            getVoxelIntensity(url, vox);
+          }
+        }
+      });
+    }
+
+    // Anatomy label query via memory-based typed array
+    let anatVal = 0;
+    if (anatDataRef.current) {
+      anatVal = queryAnatomyValue(
+        anatDataRef.current.data,
+        anatDataRef.current.dims,
+        vox
+      );
+    }
+
+    return { intensities, predVal, anatVal };
+  }, []);
+
+  const handle3DSelectLocation = useCallback((loc) => {
+    setCrosshair(loc);
+    if (nvInstanceRef.current && loc.mm) {
+      try {
+        const frac = nvInstanceRef.current.mm2frac(loc.mm, 0, true);
+        if (frac && frac.length >= 3 && !isNaN(frac[0])) {
+          nvInstanceRef.current.scene.crosshairPos = frac;
+          nvInstanceRef.current.drawScene();
+        }
+      } catch (_) {}
+    }
+  }, []);
+
+  // Synchronize browser history and hash for back/forward buttons while preserving active case
+  const navigateTo = (view, replace = false, caseIdToPreserve = null) => {
     setUploadError(null);
+    const targetCaseId = caseIdToPreserve || activeCaseId || new URLSearchParams(window.location.search).get('case');
+    const search = targetCaseId ? `?case=${encodeURIComponent(targetCaseId)}` : '';
     const targetHash = view === 'upload' ? '' : `#${view}`;
-    const url = targetHash || window.location.pathname + window.location.search;
+    const url = `${window.location.pathname}${search}${targetHash}`;
     if (replace) {
       window.history.replaceState({ view }, '', url);
     } else {
@@ -38,7 +149,7 @@ export default function App() {
   useEffect(() => {
     const handlePopState = () => {
       const hash = window.location.hash.replace('#', '');
-      const validViews = ['upload', 'processing', 'viewer', 'eval'];
+      const validViews = ['upload', 'processing', 'viewer', 'localization', 'eval'];
       setCurrentView(validViews.includes(hash) ? hash : 'upload');
     };
 
@@ -52,6 +163,53 @@ export default function App() {
     };
   }, []);
 
+  const loadCaseById = async (caseId) => {
+    try {
+      const resp = await fetch(`/api/cases/${caseId}`);
+      if (resp.status === 200) {
+        const data = await resp.json();
+        setActiveCaseId(caseId);
+        setCaseData(data);
+        try {
+          localStorage.setItem('neuroscope_last_case_id', caseId);
+        } catch (_) {}
+        if (data.status === 'done') {
+          navigateTo('viewer', false, caseId);
+        } else {
+          navigateTo('processing', false, caseId);
+          startPolling(caseId);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load case:', err);
+    }
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    let targetCase = params.get('case');
+    if (!targetCase) {
+      try {
+        targetCase = localStorage.getItem('neuroscope_last_case_id');
+      } catch (_) {}
+    }
+
+    if (targetCase) {
+      loadCaseById(targetCase);
+    } else if (window.location.hash.includes('viewer')) {
+      // Auto-load most recent completed case if navigating directly to #viewer
+      fetch('/api/cases')
+        .then(r => r.json())
+        .then(cases => {
+          const latestDone = Array.isArray(cases) ? cases.find(c => c.status === 'done') : null;
+          if (latestDone) {
+            loadCaseById(latestDone.id);
+          }
+        })
+        .catch(err => console.warn('Could not auto-load recent case:', err));
+    }
+  }, []);
+
   const startPolling = (caseId) => {
     if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
     pollIntervalRef.current = setInterval(async () => {
@@ -62,7 +220,7 @@ export default function App() {
           setCaseData(data);
           if (data.status === 'done') {
             clearInterval(pollIntervalRef.current);
-            navigateTo('viewer');
+            navigateTo('viewer', false, caseId);
           }
         } else if (resp.status === 422 || data.status === 'failed') {
           clearInterval(pollIntervalRef.current);
@@ -126,7 +284,7 @@ export default function App() {
     }
   };
 
-  const isViewerActive = currentView === 'viewer' && caseData;
+  const isViewerActive = currentView === 'viewer';
 
   return (
     /*
@@ -147,6 +305,7 @@ export default function App() {
         activeCase={caseData}
         onLoadDemo={handleLoadDemo}
         isDemoLoading={isDemoLoading}
+        onSelectCase={loadCaseById}
       />
 
       {/*
@@ -192,6 +351,122 @@ export default function App() {
           </div>
         )}
 
+        {/* ── Anatomical Localization ──────────────────────────────────── */}
+        {currentView === 'localization' && caseData && (
+          <div style={{ flex: 1, overflow: 'auto', background: 'var(--bg-main)' }}>
+            <LocalizationView
+              caseData={caseData}
+              onSelectRegionCentroid={(mm, name) => {
+                handle3DSelectLocation({
+                  mm,
+                  vox: [0, 0, 0],
+                  regionName: name,
+                  isPinned: true
+                });
+                navigateTo('viewer');
+              }}
+            />
+          </div>
+        )}
+
+        {/* ── Viewer Empty State (No Case Selected) ────────────────────── */}
+        {currentView === 'viewer' && !caseData && (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2rem',
+            textAlign: 'center',
+            background: '#0b1120',
+          }}>
+            <div style={{
+              maxWidth: '460px',
+              padding: '2.5rem',
+              background: '#0f172a',
+              borderRadius: '12px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '1.25rem',
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '50%',
+                background: 'rgba(6, 182, 212, 0.15)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#38bdf8',
+                border: '1px solid rgba(6, 182, 212, 0.3)',
+              }}>
+                <Layers size={28} />
+              </div>
+
+              <div>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#f8fafc', marginBottom: '0.4rem' }}>
+                  No Active MRI Case Selected
+                </h3>
+                <p style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.55 }}>
+                  The 2D Multiplanar Reconstruction (MPR) and 3D Workstation require an MRI scan to render. Load a pre-analyzed demo scan or upload your own NIfTI files (.nii or .nii.gz).
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.75rem', width: '100%' }}>
+                <button
+                  onClick={handleLoadDemo}
+                  disabled={isDemoLoading}
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.4rem',
+                    padding: '0.65rem 1rem',
+                    borderRadius: '6px',
+                    border: 'none',
+                    background: '#0284c7',
+                    color: '#ffffff',
+                    fontWeight: 600,
+                    fontSize: '0.82rem',
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(2,132,199,0.3)',
+                  }}
+                >
+                  <Sparkles size={15} />
+                  {isDemoLoading ? 'Loading Demo…' : 'Load Demo Scan'}
+                </button>
+
+                <button
+                  onClick={() => navigateTo('upload')}
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.4rem',
+                    padding: '0.65rem 1rem',
+                    borderRadius: '6px',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    background: 'rgba(255,255,255,0.04)',
+                    color: '#e2e8f0',
+                    fontWeight: 500,
+                    fontSize: '0.82rem',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <UploadCloud size={15} />
+                  Upload Scans
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* ── Viewer ───────────────────────────────────────────────────── */}
         {/*
          * Viewer is always rendered (not conditionally mounted/unmounted)
@@ -230,10 +505,15 @@ export default function App() {
                 background: '#0f172a',   // dark bg behind canvas
               }}>
                 <Viewer2D
+                  files={caseData.files}
                   t1Url={caseData.files?.t1}
                   predUrl={caseData.files?.pred_nii}
+                  anatomyLookup={caseData.anatomy}
                   crosshair={crosshair}
                   onCrosshairChange={setCrosshair}
+                  activeUnderlay={activeUnderlay}
+                  onUnderlayChange={setActiveUnderlay}
+                  onNVReady={(nv) => { nvInstanceRef.current = nv; }}
                 />
               </div>
 
@@ -246,12 +526,22 @@ export default function App() {
                 <Viewer3D
                   meshes={caseData.meshes}
                   crosshairMM={crosshair.mm}
+                  spatialMeta={caseData.spatial_meta}
+                  anatomyLookup={caseData.anatomy}
+                  queryVoxel={queryVoxel}
+                  onSelectLocation={handle3DSelectLocation}
                 />
               </div>
             </div>
 
             {/* Right panel: Metrics */}
-            <MetricsPanel caseData={caseData} crosshair={crosshair} />
+            <MetricsPanel
+              caseData={caseData}
+              crosshair={crosshair}
+              activeUnderlay={activeUnderlay}
+              onUnderlayChange={setActiveUnderlay}
+              onSelectLocation={handle3DSelectLocation}
+            />
           </div>
         )}
       </main>

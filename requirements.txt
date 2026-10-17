@@ -1,4 +1,6 @@
-
+# Python 3.11 runtime and test dependencies.
+# Install with:
+# python -m pip install --extra-index-url https://download.pytorch.org/whl/cu121 -r requirements.txt
 fastapi>=0.110.0
 uvicorn[standard]>=0.28.0
 python-multipart>=0.0.9
@@ -12,6 +14,7 @@ jinja2==3.1.6
 pytest>=8.0.0
 requests>=2.31.0
 
+# Keep these CUDA 12.1 builds aligned with the model environment.
 monai==1.4.0
 torch==2.4.1+cu121
 torchvision==0.19.1+cu121

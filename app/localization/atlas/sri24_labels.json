@@ -1,0 +1,3380 @@
+{
+  "provenance": {
+    "method": "SRI24 Template Space Resampling (Nearest-Neighbor)",
+    "atlas_name": "SRI24 Multi-Channel Atlas (TZO116+ parcellation)",
+    "atlas_version": "2.0",
+    "citation": "T. Rohlfing et al., Human Brain Mapping 31(5):798-819, 2010; Tzourio-Mazoyer et al., NeuroImage 15(1):273-289, 2002",
+    "license": "CC BY-SA 3.0",
+    "disclaimer": "ATLAS-DERIVED ANATOMY \u2014 approximate. Non-clinical research prototype; anatomical boundaries near lesion are approximate."
+  },
+  "labels": {
+    "1": {
+      "id": 1,
+      "raw": "Precentral_L",
+      "name": "Precentral Gyrus (Motor Cortex)",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "2": {
+      "id": 2,
+      "raw": "Precentral_R",
+      "name": "Precentral Gyrus (Motor Cortex)",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "3": {
+      "id": 3,
+      "raw": "Frontal_Sup_L",
+      "name": "Superior Frontal Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "4": {
+      "id": 4,
+      "raw": "Frontal_Sup_R",
+      "name": "Superior Frontal Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "5": {
+      "id": 5,
+      "raw": "Frontal_Sup_Orb_L",
+      "name": "Superior Frontal Gyrus, Orbital Part",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "6": {
+      "id": 6,
+      "raw": "Frontal_Sup_Orb_R",
+      "name": "Superior Frontal Gyrus, Orbital Part",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "7": {
+      "id": 7,
+      "raw": "Frontal_Mid_L",
+      "name": "Middle Frontal Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "8": {
+      "id": 8,
+      "raw": "Frontal_Mid_R",
+      "name": "Middle Frontal Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "9": {
+      "id": 9,
+      "raw": "Frontal_Mid_Orb_L",
+      "name": "Middle Frontal Gyrus, Orbital Part",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "10": {
+      "id": 10,
+      "raw": "Frontal_Mid_Orb_R",
+      "name": "Middle Frontal Gyrus, Orbital Part",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "11": {
+      "id": 11,
+      "raw": "Frontal_Inf_Oper_L",
+      "name": "Inferior Frontal Gyrus, Opercular Part",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "12": {
+      "id": 12,
+      "raw": "Frontal_Inf_Oper_R",
+      "name": "Inferior Frontal Gyrus, Opercular Part",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "13": {
+      "id": 13,
+      "raw": "Frontal_Inf_Tri_L",
+      "name": "Inferior Frontal Gyrus, Triangular Part",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "14": {
+      "id": 14,
+      "raw": "Frontal_Inf_Tri_R",
+      "name": "Inferior Frontal Gyrus, Triangular Part",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "15": {
+      "id": 15,
+      "raw": "Frontal_Inf_Orb_L",
+      "name": "Inferior Frontal Gyrus, Orbital Part",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "16": {
+      "id": 16,
+      "raw": "Frontal_Inf_Orb_R",
+      "name": "Inferior Frontal Gyrus, Orbital Part",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "17": {
+      "id": 17,
+      "raw": "Rolandic_Oper_L",
+      "name": "Rolandic Operculum",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "18": {
+      "id": 18,
+      "raw": "Rolandic_Oper_R",
+      "name": "Rolandic Operculum",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "19": {
+      "id": 19,
+      "raw": "Supp_Motor_Area_L",
+      "name": "Supplementary Motor Area",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "20": {
+      "id": 20,
+      "raw": "Supp_Motor_Area_R",
+      "name": "Supplementary Motor Area",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "21": {
+      "id": 21,
+      "raw": "Olfactory_L",
+      "name": "Olfactory Cortex",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "22": {
+      "id": 22,
+      "raw": "Olfactory_R",
+      "name": "Olfactory Cortex",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "23": {
+      "id": 23,
+      "raw": "Frontal_Sup_Medial_L",
+      "name": "Superior Frontal Gyrus, Medial Part",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "24": {
+      "id": 24,
+      "raw": "Frontal_Sup_Medial_R",
+      "name": "Superior Frontal Gyrus, Medial Part",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "25": {
+      "id": 25,
+      "raw": "Frontal_Med_Orb_L",
+      "name": "Medial Frontal Gyrus, Orbital Part",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "26": {
+      "id": 26,
+      "raw": "Frontal_Med_Orb_R",
+      "name": "Medial Frontal Gyrus, Orbital Part",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "27": {
+      "id": 27,
+      "raw": "Rectus_L",
+      "name": "Gyrus Rectus",
+      "hemisphere": "Left",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "28": {
+      "id": 28,
+      "raw": "Rectus_R",
+      "name": "Gyrus Rectus",
+      "hemisphere": "Right",
+      "lobe": "Frontal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "29": {
+      "id": 29,
+      "raw": "Insula_L",
+      "name": "Insular Cortex",
+      "hemisphere": "Left",
+      "lobe": "Insular Cortex",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "30": {
+      "id": 30,
+      "raw": "Insula_R",
+      "name": "Insular Cortex",
+      "hemisphere": "Right",
+      "lobe": "Insular Cortex",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "31": {
+      "id": 31,
+      "raw": "Cingulum_Ant_L",
+      "name": "Anterior Cingulate Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Limbic Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "32": {
+      "id": 32,
+      "raw": "Cingulum_Ant_R",
+      "name": "Anterior Cingulate Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Limbic Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "33": {
+      "id": 33,
+      "raw": "Cingulum_Mid_L",
+      "name": "Middle Cingulate Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Limbic Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "34": {
+      "id": 34,
+      "raw": "Cingulum_Mid_R",
+      "name": "Middle Cingulate Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Limbic Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "35": {
+      "id": 35,
+      "raw": "Cingulum_Post_L",
+      "name": "Posterior Cingulate Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Limbic Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "36": {
+      "id": 36,
+      "raw": "Cingulum_Post_R",
+      "name": "Posterior Cingulate Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Limbic Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "37": {
+      "id": 37,
+      "raw": "Hippocampus_L",
+      "name": "Hippocampus",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "38": {
+      "id": 38,
+      "raw": "Hippocampus_R",
+      "name": "Hippocampus",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "39": {
+      "id": 39,
+      "raw": "ParaHippocampal_L",
+      "name": "Parahippocampal Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Subcortical / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "40": {
+      "id": 40,
+      "raw": "ParaHippocampal_R",
+      "name": "Parahippocampal Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Subcortical / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "41": {
+      "id": 41,
+      "raw": "Amygdala_L",
+      "name": "Amygdala",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "42": {
+      "id": 42,
+      "raw": "Amygdala_R",
+      "name": "Amygdala",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "43": {
+      "id": 43,
+      "raw": "Calcarine_L",
+      "name": "Calcarine Cortex (Primary Visual Cortex)",
+      "hemisphere": "Left",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "44": {
+      "id": 44,
+      "raw": "Calcarine_R",
+      "name": "Calcarine Cortex (Primary Visual Cortex)",
+      "hemisphere": "Right",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "45": {
+      "id": 45,
+      "raw": "Cuneus_L",
+      "name": "Cuneus",
+      "hemisphere": "Left",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "46": {
+      "id": 46,
+      "raw": "Cuneus_R",
+      "name": "Cuneus",
+      "hemisphere": "Right",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "47": {
+      "id": 47,
+      "raw": "Lingual_L",
+      "name": "Lingual Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "48": {
+      "id": 48,
+      "raw": "Lingual_R",
+      "name": "Lingual Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "49": {
+      "id": 49,
+      "raw": "Occipital_Sup_L",
+      "name": "Superior Occipital Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "50": {
+      "id": 50,
+      "raw": "Occipital_Sup_R",
+      "name": "Superior Occipital Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "51": {
+      "id": 51,
+      "raw": "Occipital_Mid_L",
+      "name": "Middle Occipital Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "52": {
+      "id": 52,
+      "raw": "Occipital_Mid_R",
+      "name": "Middle Occipital Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "53": {
+      "id": 53,
+      "raw": "Occipital_Inf_L",
+      "name": "Inferior Occipital Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "54": {
+      "id": 54,
+      "raw": "Occipital_Inf_R",
+      "name": "Inferior Occipital Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Occipital Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "55": {
+      "id": 55,
+      "raw": "Fusiform_L",
+      "name": "Fusiform Gyrus (Occipitotemporal)",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "56": {
+      "id": 56,
+      "raw": "Fusiform_R",
+      "name": "Fusiform Gyrus (Occipitotemporal)",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "57": {
+      "id": 57,
+      "raw": "Postcentral_L",
+      "name": "Postcentral Gyrus (Somatosensory Cortex)",
+      "hemisphere": "Left",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "58": {
+      "id": 58,
+      "raw": "Postcentral_R",
+      "name": "Postcentral Gyrus (Somatosensory Cortex)",
+      "hemisphere": "Right",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "59": {
+      "id": 59,
+      "raw": "Parietal_Sup_L",
+      "name": "Superior Parietal Lobule",
+      "hemisphere": "Left",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "60": {
+      "id": 60,
+      "raw": "Parietal_Sup_R",
+      "name": "Superior Parietal Lobule",
+      "hemisphere": "Right",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "61": {
+      "id": 61,
+      "raw": "Parietal_Inf_L",
+      "name": "Inferior Parietal Lobule",
+      "hemisphere": "Left",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "62": {
+      "id": 62,
+      "raw": "Parietal_Inf_R",
+      "name": "Inferior Parietal Lobule",
+      "hemisphere": "Right",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "63": {
+      "id": 63,
+      "raw": "SupraMarginal_L",
+      "name": "SupraMarginal",
+      "hemisphere": "Left",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "64": {
+      "id": 64,
+      "raw": "SupraMarginal_R",
+      "name": "SupraMarginal",
+      "hemisphere": "Right",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "65": {
+      "id": 65,
+      "raw": "Angular_L",
+      "name": "Angular Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "66": {
+      "id": 66,
+      "raw": "Angular_R",
+      "name": "Angular Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "67": {
+      "id": 67,
+      "raw": "Precuneus_L",
+      "name": "Precuneus",
+      "hemisphere": "Left",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "68": {
+      "id": 68,
+      "raw": "Precuneus_R",
+      "name": "Precuneus",
+      "hemisphere": "Right",
+      "lobe": "Parietal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "69": {
+      "id": 69,
+      "raw": "Paracentral_Lobule_L",
+      "name": "Paracentral Lobule",
+      "hemisphere": "Left",
+      "lobe": "Subcortical / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "70": {
+      "id": 70,
+      "raw": "Paracentral_Lobule_R",
+      "name": "Paracentral Lobule",
+      "hemisphere": "Right",
+      "lobe": "Subcortical / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "71": {
+      "id": 71,
+      "raw": "Caudate_L",
+      "name": "Caudate Nucleus",
+      "hemisphere": "Left",
+      "lobe": "Subcortical Nuclei",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "72": {
+      "id": 72,
+      "raw": "Caudate_R",
+      "name": "Caudate Nucleus",
+      "hemisphere": "Right",
+      "lobe": "Subcortical Nuclei",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "73": {
+      "id": 73,
+      "raw": "Putamen_L",
+      "name": "Putamen",
+      "hemisphere": "Left",
+      "lobe": "Subcortical Nuclei",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "74": {
+      "id": 74,
+      "raw": "Putamen_R",
+      "name": "Putamen",
+      "hemisphere": "Right",
+      "lobe": "Subcortical Nuclei",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "75": {
+      "id": 75,
+      "raw": "Pallidum_L",
+      "name": "Globus Pallidus",
+      "hemisphere": "Left",
+      "lobe": "Subcortical Nuclei",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "76": {
+      "id": 76,
+      "raw": "Pallidum_R",
+      "name": "Globus Pallidus",
+      "hemisphere": "Right",
+      "lobe": "Subcortical Nuclei",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "77": {
+      "id": 77,
+      "raw": "Thalamus_L",
+      "name": "Thalamus",
+      "hemisphere": "Left",
+      "lobe": "Subcortical Nuclei",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "78": {
+      "id": 78,
+      "raw": "Thalamus_R",
+      "name": "Thalamus",
+      "hemisphere": "Right",
+      "lobe": "Subcortical Nuclei",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "79": {
+      "id": 79,
+      "raw": "Heschl_L",
+      "name": "Heschl's Gyrus (Primary Auditory Cortex)",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "80": {
+      "id": 80,
+      "raw": "Heschl_R",
+      "name": "Heschl's Gyrus (Primary Auditory Cortex)",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "81": {
+      "id": 81,
+      "raw": "Temporal_Sup_L",
+      "name": "Superior Temporal Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "82": {
+      "id": 82,
+      "raw": "Temporal_Sup_R",
+      "name": "Superior Temporal Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "83": {
+      "id": 83,
+      "raw": "Temporal_Pole_Sup_L",
+      "name": "Superior Temporal Pole",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "84": {
+      "id": 84,
+      "raw": "Temporal_Pole_Sup_R",
+      "name": "Superior Temporal Pole",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "85": {
+      "id": 85,
+      "raw": "Temporal_Mid_L",
+      "name": "Middle Temporal Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "86": {
+      "id": 86,
+      "raw": "Temporal_Mid_R",
+      "name": "Middle Temporal Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "87": {
+      "id": 87,
+      "raw": "Temporal_Pole_Mid_L",
+      "name": "Middle Temporal Pole",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "88": {
+      "id": 88,
+      "raw": "Temporal_Pole_Mid_R",
+      "name": "Middle Temporal Pole",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "89": {
+      "id": 89,
+      "raw": "Temporal_Inf_L",
+      "name": "Inferior Temporal Gyrus",
+      "hemisphere": "Left",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "90": {
+      "id": 90,
+      "raw": "Temporal_Inf_R",
+      "name": "Inferior Temporal Gyrus",
+      "hemisphere": "Right",
+      "lobe": "Temporal Lobe",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "91": {
+      "id": 91,
+      "raw": "Cerebelum_Crus1_L",
+      "name": "Cerebellum Crus1",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "92": {
+      "id": 92,
+      "raw": "Cerebelum_Crus1_R",
+      "name": "Cerebellum Crus1",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "93": {
+      "id": 93,
+      "raw": "Cerebelum_Crus2_L",
+      "name": "Cerebellum Crus2",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "94": {
+      "id": 94,
+      "raw": "Cerebelum_Crus2_R",
+      "name": "Cerebellum Crus2",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "95": {
+      "id": 95,
+      "raw": "Cerebelum_3_L",
+      "name": "Cerebellum 3",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "96": {
+      "id": 96,
+      "raw": "Cerebelum_3_R",
+      "name": "Cerebellum 3",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "97": {
+      "id": 97,
+      "raw": "Cerebelum_4_5_L",
+      "name": "Cerebellum 4 5",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "98": {
+      "id": 98,
+      "raw": "Cerebelum_4_5_R",
+      "name": "Cerebellum 4 5",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "99": {
+      "id": 99,
+      "raw": "Cerebelum_6_L",
+      "name": "Cerebellum 6",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "100": {
+      "id": 100,
+      "raw": "Cerebelum_6_R",
+      "name": "Cerebellum 6",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "101": {
+      "id": 101,
+      "raw": "Cerebelum_7b_L",
+      "name": "Cerebellum 7b",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "102": {
+      "id": 102,
+      "raw": "Cerebelum_7b_R",
+      "name": "Cerebellum 7b",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "103": {
+      "id": 103,
+      "raw": "Cerebelum_8_L",
+      "name": "Cerebellum 8",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "104": {
+      "id": 104,
+      "raw": "Cerebelum_8_R",
+      "name": "Cerebellum 8",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "105": {
+      "id": 105,
+      "raw": "Cerebelum_9_L",
+      "name": "Cerebellum 9",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "106": {
+      "id": 106,
+      "raw": "Cerebelum_9_R",
+      "name": "Cerebellum 9",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "107": {
+      "id": 107,
+      "raw": "Cerebelum_10_L",
+      "name": "Cerebellum 10",
+      "hemisphere": "Left",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "108": {
+      "id": 108,
+      "raw": "Cerebelum_10_R",
+      "name": "Cerebellum 10",
+      "hemisphere": "Right",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "109": {
+      "id": 109,
+      "raw": "Vermis_1_2",
+      "name": "Cerebellar Vermis 1 2",
+      "hemisphere": "Midline",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "110": {
+      "id": 110,
+      "raw": "Vermis_3",
+      "name": "Cerebellar Vermis 3",
+      "hemisphere": "Midline",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "111": {
+      "id": 111,
+      "raw": "Vermis_4_5",
+      "name": "Cerebellar Vermis 4 5",
+      "hemisphere": "Midline",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "112": {
+      "id": 112,
+      "raw": "Vermis_6",
+      "name": "Cerebellar Vermis 6",
+      "hemisphere": "Midline",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "113": {
+      "id": 113,
+      "raw": "Vermis_7",
+      "name": "Cerebellar Vermis 7",
+      "hemisphere": "Midline",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "114": {
+      "id": 114,
+      "raw": "Vermis_8",
+      "name": "Cerebellar Vermis 8",
+      "hemisphere": "Midline",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "115": {
+      "id": 115,
+      "raw": "Vermis_9",
+      "name": "Cerebellar Vermis 9",
+      "hemisphere": "Midline",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "116": {
+      "id": 116,
+      "raw": "Vermis_10",
+      "name": "Cerebellar Vermis 10",
+      "hemisphere": "Midline",
+      "lobe": "Cerebellum",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "201": {
+      "id": 201,
+      "raw": "LateralVentricle_L_y48",
+      "name": "LateralVentricley48",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "202": {
+      "id": 202,
+      "raw": "LateralVentricle_R_y48",
+      "name": "LateralVentricley48",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "203": {
+      "id": 203,
+      "raw": "LateralVentricle_L_y49",
+      "name": "LateralVentricley49",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "204": {
+      "id": 204,
+      "raw": "LateralVentricle_R_y49",
+      "name": "LateralVentricley49",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "205": {
+      "id": 205,
+      "raw": "LateralVentricle_L_y50",
+      "name": "LateralVentricley50",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "206": {
+      "id": 206,
+      "raw": "LateralVentricle_R_y50",
+      "name": "LateralVentricley50",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "207": {
+      "id": 207,
+      "raw": "LateralVentricle_L_y51",
+      "name": "LateralVentricley51",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "208": {
+      "id": 208,
+      "raw": "LateralVentricle_R_y51",
+      "name": "LateralVentricley51",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "209": {
+      "id": 209,
+      "raw": "LateralVentricle_L_y52",
+      "name": "LateralVentricley52",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "210": {
+      "id": 210,
+      "raw": "LateralVentricle_R_y52",
+      "name": "LateralVentricley52",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "211": {
+      "id": 211,
+      "raw": "LateralVentricle_L_y53",
+      "name": "LateralVentricley53",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "212": {
+      "id": 212,
+      "raw": "LateralVentricle_R_y53",
+      "name": "LateralVentricley53",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "213": {
+      "id": 213,
+      "raw": "LateralVentricle_L_y54",
+      "name": "LateralVentricley54",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "214": {
+      "id": 214,
+      "raw": "LateralVentricle_R_y54",
+      "name": "LateralVentricley54",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "215": {
+      "id": 215,
+      "raw": "LateralVentricle_L_y55",
+      "name": "LateralVentricley55",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "216": {
+      "id": 216,
+      "raw": "LateralVentricle_R_y55",
+      "name": "LateralVentricley55",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "217": {
+      "id": 217,
+      "raw": "LateralVentricle_L_y56",
+      "name": "LateralVentricley56",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "218": {
+      "id": 218,
+      "raw": "LateralVentricle_R_y56",
+      "name": "LateralVentricley56",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "219": {
+      "id": 219,
+      "raw": "LateralVentricle_L_y57",
+      "name": "LateralVentricley57",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "220": {
+      "id": 220,
+      "raw": "LateralVentricle_R_y57",
+      "name": "LateralVentricley57",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "221": {
+      "id": 221,
+      "raw": "LateralVentricle_L_y58",
+      "name": "LateralVentricley58",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "222": {
+      "id": 222,
+      "raw": "LateralVentricle_R_y58",
+      "name": "LateralVentricley58",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "223": {
+      "id": 223,
+      "raw": "LateralVentricle_L_y59",
+      "name": "LateralVentricley59",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "224": {
+      "id": 224,
+      "raw": "LateralVentricle_R_y59",
+      "name": "LateralVentricley59",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "225": {
+      "id": 225,
+      "raw": "LateralVentricle_L_y60",
+      "name": "LateralVentricley60",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "226": {
+      "id": 226,
+      "raw": "LateralVentricle_R_y60",
+      "name": "LateralVentricley60",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "227": {
+      "id": 227,
+      "raw": "LateralVentricle_L_y61",
+      "name": "LateralVentricley61",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "228": {
+      "id": 228,
+      "raw": "LateralVentricle_R_y61",
+      "name": "LateralVentricley61",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "229": {
+      "id": 229,
+      "raw": "LateralVentricle_L_y62",
+      "name": "LateralVentricley62",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "230": {
+      "id": 230,
+      "raw": "LateralVentricle_R_y62",
+      "name": "LateralVentricley62",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "231": {
+      "id": 231,
+      "raw": "LateralVentricle_L_y63",
+      "name": "LateralVentricley63",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "232": {
+      "id": 232,
+      "raw": "LateralVentricle_R_y63",
+      "name": "LateralVentricley63",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "233": {
+      "id": 233,
+      "raw": "LateralVentricle_L_y64",
+      "name": "LateralVentricley64",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "234": {
+      "id": 234,
+      "raw": "LateralVentricle_R_y64",
+      "name": "LateralVentricley64",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "235": {
+      "id": 235,
+      "raw": "LateralVentricle_L_y65",
+      "name": "LateralVentricley65",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "236": {
+      "id": 236,
+      "raw": "LateralVentricle_R_y65",
+      "name": "LateralVentricley65",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "237": {
+      "id": 237,
+      "raw": "LateralVentricle_L_y66",
+      "name": "LateralVentricley66",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "238": {
+      "id": 238,
+      "raw": "LateralVentricle_R_y66",
+      "name": "LateralVentricley66",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "239": {
+      "id": 239,
+      "raw": "LateralVentricle_L_y67",
+      "name": "LateralVentricley67",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "240": {
+      "id": 240,
+      "raw": "LateralVentricle_R_y67",
+      "name": "LateralVentricley67",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "241": {
+      "id": 241,
+      "raw": "LateralVentricle_L_y68",
+      "name": "LateralVentricley68",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "242": {
+      "id": 242,
+      "raw": "LateralVentricle_R_y68",
+      "name": "LateralVentricley68",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "243": {
+      "id": 243,
+      "raw": "LateralVentricle_L_y69",
+      "name": "LateralVentricley69",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "244": {
+      "id": 244,
+      "raw": "LateralVentricle_R_y69",
+      "name": "LateralVentricley69",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "245": {
+      "id": 245,
+      "raw": "LateralVentricle_L_y70",
+      "name": "LateralVentricley70",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "246": {
+      "id": 246,
+      "raw": "LateralVentricle_R_y70",
+      "name": "LateralVentricley70",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "247": {
+      "id": 247,
+      "raw": "LateralVentricle_L_y71",
+      "name": "LateralVentricley71",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "248": {
+      "id": 248,
+      "raw": "LateralVentricle_R_y71",
+      "name": "LateralVentricley71",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "249": {
+      "id": 249,
+      "raw": "LateralVentricle_L_y72",
+      "name": "LateralVentricley72",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "250": {
+      "id": 250,
+      "raw": "LateralVentricle_R_y72",
+      "name": "LateralVentricley72",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "251": {
+      "id": 251,
+      "raw": "LateralVentricle_L_y73",
+      "name": "LateralVentricley73",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "252": {
+      "id": 252,
+      "raw": "LateralVentricle_R_y73",
+      "name": "LateralVentricley73",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "253": {
+      "id": 253,
+      "raw": "LateralVentricle_L_y74",
+      "name": "LateralVentricley74",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "254": {
+      "id": 254,
+      "raw": "LateralVentricle_R_y74",
+      "name": "LateralVentricley74",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "255": {
+      "id": 255,
+      "raw": "LateralVentricle_L_y75",
+      "name": "LateralVentricley75",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "256": {
+      "id": 256,
+      "raw": "LateralVentricle_R_y75",
+      "name": "LateralVentricley75",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "257": {
+      "id": 257,
+      "raw": "LateralVentricle_L_y76",
+      "name": "LateralVentricley76",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "258": {
+      "id": 258,
+      "raw": "LateralVentricle_R_y76",
+      "name": "LateralVentricley76",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "259": {
+      "id": 259,
+      "raw": "LateralVentricle_L_y77",
+      "name": "LateralVentricley77",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "260": {
+      "id": 260,
+      "raw": "LateralVentricle_R_y77",
+      "name": "LateralVentricley77",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "261": {
+      "id": 261,
+      "raw": "LateralVentricle_L_y78",
+      "name": "LateralVentricley78",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "262": {
+      "id": 262,
+      "raw": "LateralVentricle_R_y78",
+      "name": "LateralVentricley78",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "263": {
+      "id": 263,
+      "raw": "LateralVentricle_L_y79",
+      "name": "LateralVentricley79",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "264": {
+      "id": 264,
+      "raw": "LateralVentricle_R_y79",
+      "name": "LateralVentricley79",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "265": {
+      "id": 265,
+      "raw": "LateralVentricle_L_y80",
+      "name": "LateralVentricley80",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "266": {
+      "id": 266,
+      "raw": "LateralVentricle_R_y80",
+      "name": "LateralVentricley80",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "267": {
+      "id": 267,
+      "raw": "LateralVentricle_L_y81",
+      "name": "LateralVentricley81",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "268": {
+      "id": 268,
+      "raw": "LateralVentricle_R_y81",
+      "name": "LateralVentricley81",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "269": {
+      "id": 269,
+      "raw": "LateralVentricle_L_y82",
+      "name": "LateralVentricley82",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "270": {
+      "id": 270,
+      "raw": "LateralVentricle_R_y82",
+      "name": "LateralVentricley82",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "271": {
+      "id": 271,
+      "raw": "LateralVentricle_L_y83",
+      "name": "LateralVentricley83",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "272": {
+      "id": 272,
+      "raw": "LateralVentricle_R_y83",
+      "name": "LateralVentricley83",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "273": {
+      "id": 273,
+      "raw": "LateralVentricle_L_y84",
+      "name": "LateralVentricley84",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "274": {
+      "id": 274,
+      "raw": "LateralVentricle_R_y84",
+      "name": "LateralVentricley84",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "275": {
+      "id": 275,
+      "raw": "LateralVentricle_L_y85",
+      "name": "LateralVentricley85",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "276": {
+      "id": 276,
+      "raw": "LateralVentricle_R_y85",
+      "name": "LateralVentricley85",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "277": {
+      "id": 277,
+      "raw": "LateralVentricle_L_y86",
+      "name": "LateralVentricley86",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "278": {
+      "id": 278,
+      "raw": "LateralVentricle_R_y86",
+      "name": "LateralVentricley86",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "279": {
+      "id": 279,
+      "raw": "LateralVentricle_L_y87",
+      "name": "LateralVentricley87",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "280": {
+      "id": 280,
+      "raw": "LateralVentricle_R_y87",
+      "name": "LateralVentricley87",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "281": {
+      "id": 281,
+      "raw": "LateralVentricle_L_y88",
+      "name": "LateralVentricley88",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "282": {
+      "id": 282,
+      "raw": "LateralVentricle_R_y88",
+      "name": "LateralVentricley88",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "283": {
+      "id": 283,
+      "raw": "LateralVentricle_L_y89",
+      "name": "LateralVentricley89",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "284": {
+      "id": 284,
+      "raw": "LateralVentricle_R_y89",
+      "name": "LateralVentricley89",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "285": {
+      "id": 285,
+      "raw": "LateralVentricle_L_y90",
+      "name": "LateralVentricley90",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "286": {
+      "id": 286,
+      "raw": "LateralVentricle_R_y90",
+      "name": "LateralVentricley90",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "287": {
+      "id": 287,
+      "raw": "LateralVentricle_L_y91",
+      "name": "LateralVentricley91",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "288": {
+      "id": 288,
+      "raw": "LateralVentricle_R_y91",
+      "name": "LateralVentricley91",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "289": {
+      "id": 289,
+      "raw": "LateralVentricle_L_y92",
+      "name": "LateralVentricley92",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "290": {
+      "id": 290,
+      "raw": "LateralVentricle_R_y92",
+      "name": "LateralVentricley92",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "291": {
+      "id": 291,
+      "raw": "LateralVentricle_L_y93",
+      "name": "LateralVentricley93",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "292": {
+      "id": 292,
+      "raw": "LateralVentricle_R_y93",
+      "name": "LateralVentricley93",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "293": {
+      "id": 293,
+      "raw": "LateralVentricle_L_y94",
+      "name": "LateralVentricley94",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "294": {
+      "id": 294,
+      "raw": "LateralVentricle_R_y94",
+      "name": "LateralVentricley94",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "295": {
+      "id": 295,
+      "raw": "LateralVentricle_L_y95",
+      "name": "LateralVentricley95",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "296": {
+      "id": 296,
+      "raw": "LateralVentricle_R_y95",
+      "name": "LateralVentricley95",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "297": {
+      "id": 297,
+      "raw": "LateralVentricle_L_y96",
+      "name": "LateralVentricley96",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "298": {
+      "id": 298,
+      "raw": "LateralVentricle_R_y96",
+      "name": "LateralVentricley96",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "299": {
+      "id": 299,
+      "raw": "LateralVentricle_L_y97",
+      "name": "LateralVentricley97",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "300": {
+      "id": 300,
+      "raw": "LateralVentricle_R_y97",
+      "name": "LateralVentricley97",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "301": {
+      "id": 301,
+      "raw": "LateralVentricle_L_y98",
+      "name": "LateralVentricley98",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "302": {
+      "id": 302,
+      "raw": "LateralVentricle_R_y98",
+      "name": "LateralVentricley98",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "303": {
+      "id": 303,
+      "raw": "LateralVentricle_L_y99",
+      "name": "LateralVentricley99",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "304": {
+      "id": 304,
+      "raw": "LateralVentricle_R_y99",
+      "name": "LateralVentricley99",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "305": {
+      "id": 305,
+      "raw": "LateralVentricle_L_y100",
+      "name": "LateralVentricley100",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "306": {
+      "id": 306,
+      "raw": "LateralVentricle_R_y100",
+      "name": "LateralVentricley100",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "307": {
+      "id": 307,
+      "raw": "LateralVentricle_L_y101",
+      "name": "LateralVentricley101",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "308": {
+      "id": 308,
+      "raw": "LateralVentricle_R_y101",
+      "name": "LateralVentricley101",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "309": {
+      "id": 309,
+      "raw": "LateralVentricle_L_y102",
+      "name": "LateralVentricley102",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "310": {
+      "id": 310,
+      "raw": "LateralVentricle_R_y102",
+      "name": "LateralVentricley102",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "311": {
+      "id": 311,
+      "raw": "LateralVentricle_L_y103",
+      "name": "LateralVentricley103",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "312": {
+      "id": 312,
+      "raw": "LateralVentricle_R_y103",
+      "name": "LateralVentricley103",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "313": {
+      "id": 313,
+      "raw": "LateralVentricle_L_y104",
+      "name": "LateralVentricley104",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "314": {
+      "id": 314,
+      "raw": "LateralVentricle_R_y104",
+      "name": "LateralVentricley104",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "315": {
+      "id": 315,
+      "raw": "LateralVentricle_L_y105",
+      "name": "LateralVentricley105",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "316": {
+      "id": 316,
+      "raw": "LateralVentricle_R_y105",
+      "name": "LateralVentricley105",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "317": {
+      "id": 317,
+      "raw": "LateralVentricle_L_y106",
+      "name": "LateralVentricley106",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "318": {
+      "id": 318,
+      "raw": "LateralVentricle_R_y106",
+      "name": "LateralVentricley106",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "319": {
+      "id": 319,
+      "raw": "LateralVentricle_L_y107",
+      "name": "LateralVentricley107",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "320": {
+      "id": 320,
+      "raw": "LateralVentricle_R_y107",
+      "name": "LateralVentricley107",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "321": {
+      "id": 321,
+      "raw": "LateralVentricle_L_y108",
+      "name": "LateralVentricley108",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "322": {
+      "id": 322,
+      "raw": "LateralVentricle_R_y108",
+      "name": "LateralVentricley108",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "323": {
+      "id": 323,
+      "raw": "LateralVentricle_L_y109",
+      "name": "LateralVentricley109",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "324": {
+      "id": 324,
+      "raw": "LateralVentricle_R_y109",
+      "name": "LateralVentricley109",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "325": {
+      "id": 325,
+      "raw": "LateralVentricle_L_y110",
+      "name": "LateralVentricley110",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "326": {
+      "id": 326,
+      "raw": "LateralVentricle_R_y110",
+      "name": "LateralVentricley110",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "327": {
+      "id": 327,
+      "raw": "LateralVentricle_L_y111",
+      "name": "LateralVentricley111",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "328": {
+      "id": 328,
+      "raw": "LateralVentricle_R_y111",
+      "name": "LateralVentricley111",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "329": {
+      "id": 329,
+      "raw": "LateralVentricle_L_y112",
+      "name": "LateralVentricley112",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "330": {
+      "id": 330,
+      "raw": "LateralVentricle_R_y112",
+      "name": "LateralVentricley112",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "331": {
+      "id": 331,
+      "raw": "LateralVentricle_L_y113",
+      "name": "LateralVentricley113",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "332": {
+      "id": 332,
+      "raw": "LateralVentricle_R_y113",
+      "name": "LateralVentricley113",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "333": {
+      "id": 333,
+      "raw": "LateralVentricle_L_y114",
+      "name": "LateralVentricley114",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "334": {
+      "id": 334,
+      "raw": "LateralVentricle_R_y114",
+      "name": "LateralVentricley114",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "335": {
+      "id": 335,
+      "raw": "LateralVentricle_L_y115",
+      "name": "LateralVentricley115",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "336": {
+      "id": 336,
+      "raw": "LateralVentricle_R_y115",
+      "name": "LateralVentricley115",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "337": {
+      "id": 337,
+      "raw": "LateralVentricle_L_y116",
+      "name": "LateralVentricley116",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "338": {
+      "id": 338,
+      "raw": "LateralVentricle_R_y116",
+      "name": "LateralVentricley116",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "339": {
+      "id": 339,
+      "raw": "LateralVentricle_L_y117",
+      "name": "LateralVentricley117",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "340": {
+      "id": 340,
+      "raw": "LateralVentricle_R_y117",
+      "name": "LateralVentricley117",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "341": {
+      "id": 341,
+      "raw": "LateralVentricle_L_y118",
+      "name": "LateralVentricley118",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "342": {
+      "id": 342,
+      "raw": "LateralVentricle_R_y118",
+      "name": "LateralVentricley118",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "343": {
+      "id": 343,
+      "raw": "LateralVentricle_L_y119",
+      "name": "LateralVentricley119",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "344": {
+      "id": 344,
+      "raw": "LateralVentricle_R_y119",
+      "name": "LateralVentricley119",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "345": {
+      "id": 345,
+      "raw": "LateralVentricle_L_y120",
+      "name": "LateralVentricley120",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "346": {
+      "id": 346,
+      "raw": "LateralVentricle_R_y120",
+      "name": "LateralVentricley120",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "347": {
+      "id": 347,
+      "raw": "LateralVentricle_L_y121",
+      "name": "LateralVentricley121",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "348": {
+      "id": 348,
+      "raw": "LateralVentricle_R_y121",
+      "name": "LateralVentricley121",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "349": {
+      "id": 349,
+      "raw": "LateralVentricle_L_y122",
+      "name": "LateralVentricley122",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "350": {
+      "id": 350,
+      "raw": "LateralVentricle_R_y122",
+      "name": "LateralVentricley122",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "351": {
+      "id": 351,
+      "raw": "LateralVentricle_L_y123",
+      "name": "LateralVentricley123",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "352": {
+      "id": 352,
+      "raw": "LateralVentricle_R_y123",
+      "name": "LateralVentricley123",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "353": {
+      "id": 353,
+      "raw": "LateralVentricle_L_y124",
+      "name": "LateralVentricley124",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "354": {
+      "id": 354,
+      "raw": "LateralVentricle_R_y124",
+      "name": "LateralVentricley124",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "355": {
+      "id": 355,
+      "raw": "LateralVentricle_L_y125",
+      "name": "LateralVentricley125",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "356": {
+      "id": 356,
+      "raw": "LateralVentricle_R_y125",
+      "name": "LateralVentricley125",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "357": {
+      "id": 357,
+      "raw": "LateralVentricle_L_y126",
+      "name": "LateralVentricley126",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "358": {
+      "id": 358,
+      "raw": "LateralVentricle_R_y126",
+      "name": "LateralVentricley126",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "359": {
+      "id": 359,
+      "raw": "LateralVentricle_L_y127",
+      "name": "LateralVentricley127",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "360": {
+      "id": 360,
+      "raw": "LateralVentricle_R_y127",
+      "name": "LateralVentricley127",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "361": {
+      "id": 361,
+      "raw": "LateralVentricle_L_y128",
+      "name": "LateralVentricley128",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "362": {
+      "id": 362,
+      "raw": "LateralVentricle_R_y128",
+      "name": "LateralVentricley128",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "363": {
+      "id": 363,
+      "raw": "LateralVentricle_L_y129",
+      "name": "LateralVentricley129",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "364": {
+      "id": 364,
+      "raw": "LateralVentricle_R_y129",
+      "name": "LateralVentricley129",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "365": {
+      "id": 365,
+      "raw": "LateralVentricle_L_y130",
+      "name": "LateralVentricley130",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "366": {
+      "id": 366,
+      "raw": "LateralVentricle_R_y130",
+      "name": "LateralVentricley130",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "367": {
+      "id": 367,
+      "raw": "LateralVentricle_L_y131",
+      "name": "LateralVentricley131",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "368": {
+      "id": 368,
+      "raw": "LateralVentricle_R_y131",
+      "name": "LateralVentricley131",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "369": {
+      "id": 369,
+      "raw": "LateralVentricle_L_y132",
+      "name": "LateralVentricley132",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "370": {
+      "id": 370,
+      "raw": "LateralVentricle_R_y132",
+      "name": "LateralVentricley132",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "371": {
+      "id": 371,
+      "raw": "LateralVentricle_L_y133",
+      "name": "LateralVentricley133",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "372": {
+      "id": 372,
+      "raw": "LateralVentricle_R_y133",
+      "name": "LateralVentricley133",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "373": {
+      "id": 373,
+      "raw": "LateralVentricle_L_y134",
+      "name": "LateralVentricley134",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "374": {
+      "id": 374,
+      "raw": "LateralVentricle_R_y134",
+      "name": "LateralVentricley134",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "375": {
+      "id": 375,
+      "raw": "LateralVentricle_L_y135",
+      "name": "LateralVentricley135",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "376": {
+      "id": 376,
+      "raw": "LateralVentricle_R_y135",
+      "name": "LateralVentricley135",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "377": {
+      "id": 377,
+      "raw": "LateralVentricle_L_y136",
+      "name": "LateralVentricley136",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "378": {
+      "id": 378,
+      "raw": "LateralVentricle_R_y136",
+      "name": "LateralVentricley136",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "379": {
+      "id": 379,
+      "raw": "LateralVentricle_L_y137",
+      "name": "LateralVentricley137",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "380": {
+      "id": 380,
+      "raw": "LateralVentricle_R_y137",
+      "name": "LateralVentricley137",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "381": {
+      "id": 381,
+      "raw": "LateralVentricle_L_y138",
+      "name": "LateralVentricley138",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "382": {
+      "id": 382,
+      "raw": "LateralVentricle_R_y138",
+      "name": "LateralVentricley138",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "383": {
+      "id": 383,
+      "raw": "LateralVentricle_L_y139",
+      "name": "LateralVentricley139",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "384": {
+      "id": 384,
+      "raw": "LateralVentricle_R_y139",
+      "name": "LateralVentricley139",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "385": {
+      "id": 385,
+      "raw": "LateralVentricle_L_y140",
+      "name": "LateralVentricley140",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "386": {
+      "id": 386,
+      "raw": "LateralVentricle_R_y140",
+      "name": "LateralVentricley140",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "387": {
+      "id": 387,
+      "raw": "LateralVentricle_L_y141",
+      "name": "LateralVentricley141",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "388": {
+      "id": 388,
+      "raw": "LateralVentricle_R_y141",
+      "name": "LateralVentricley141",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "389": {
+      "id": 389,
+      "raw": "LateralVentricle_L_y142",
+      "name": "LateralVentricley142",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "390": {
+      "id": 390,
+      "raw": "LateralVentricle_R_y142",
+      "name": "LateralVentricley142",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "391": {
+      "id": 391,
+      "raw": "LateralVentricle_L_y143",
+      "name": "LateralVentricley143",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "392": {
+      "id": 392,
+      "raw": "LateralVentricle_R_y143",
+      "name": "LateralVentricley143",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "393": {
+      "id": 393,
+      "raw": "LateralVentricle_L_y144",
+      "name": "LateralVentricley144",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "394": {
+      "id": 394,
+      "raw": "LateralVentricle_R_y144",
+      "name": "LateralVentricley144",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "395": {
+      "id": 395,
+      "raw": "LateralVentricle_L_y145",
+      "name": "LateralVentricley145",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "396": {
+      "id": 396,
+      "raw": "LateralVentricle_R_y145",
+      "name": "LateralVentricley145",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "397": {
+      "id": 397,
+      "raw": "LateralVentricle_L_y146",
+      "name": "LateralVentricley146",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "398": {
+      "id": 398,
+      "raw": "LateralVentricle_R_y146",
+      "name": "LateralVentricley146",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "399": {
+      "id": 399,
+      "raw": "LateralVentricle_L_y147",
+      "name": "LateralVentricley147",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "400": {
+      "id": 400,
+      "raw": "LateralVentricle_R_y147",
+      "name": "LateralVentricley147",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "401": {
+      "id": 401,
+      "raw": "LateralVentricle_L_y148",
+      "name": "LateralVentricley148",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "402": {
+      "id": 402,
+      "raw": "LateralVentricle_R_y148",
+      "name": "LateralVentricley148",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "403": {
+      "id": 403,
+      "raw": "LateralVentricle_L_y149",
+      "name": "LateralVentricley149",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "404": {
+      "id": 404,
+      "raw": "LateralVentricle_R_y149",
+      "name": "LateralVentricley149",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "405": {
+      "id": 405,
+      "raw": "LateralVentricle_L_y150",
+      "name": "LateralVentricley150",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "406": {
+      "id": 406,
+      "raw": "LateralVentricle_R_y150",
+      "name": "LateralVentricley150",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "407": {
+      "id": 407,
+      "raw": "LateralVentricle_L_y151",
+      "name": "LateralVentricley151",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "408": {
+      "id": 408,
+      "raw": "LateralVentricle_R_y151",
+      "name": "LateralVentricley151",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "409": {
+      "id": 409,
+      "raw": "LateralVentricle_L_y152",
+      "name": "LateralVentricley152",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "410": {
+      "id": 410,
+      "raw": "LateralVentricle_R_y152",
+      "name": "LateralVentricley152",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "411": {
+      "id": 411,
+      "raw": "LateralVentricle_L_y153",
+      "name": "LateralVentricley153",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "412": {
+      "id": 412,
+      "raw": "LateralVentricle_R_y153",
+      "name": "LateralVentricley153",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "413": {
+      "id": 413,
+      "raw": "LateralVentricle_L_y145",
+      "name": "LateralVentricley145",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "414": {
+      "id": 414,
+      "raw": "LateralVentricle_R_y154",
+      "name": "LateralVentricley154",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "491": {
+      "id": 491,
+      "raw": "ThirdVentricle_L_y98",
+      "name": "ThirdVentricley98",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "492": {
+      "id": 492,
+      "raw": "ThirdVentricle_R_y98",
+      "name": "ThirdVentricley98",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "493": {
+      "id": 493,
+      "raw": "ThirdVentricle_L_y99",
+      "name": "ThirdVentricley99",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "494": {
+      "id": 494,
+      "raw": "ThirdVentricle_R_y99",
+      "name": "ThirdVentricley99",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "495": {
+      "id": 495,
+      "raw": "ThirdVentricle_L_y100",
+      "name": "ThirdVentricley100",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "496": {
+      "id": 496,
+      "raw": "ThirdVentricle_R_y100",
+      "name": "ThirdVentricley100",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "497": {
+      "id": 497,
+      "raw": "ThirdVentricle_L_y101",
+      "name": "ThirdVentricley101",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "498": {
+      "id": 498,
+      "raw": "ThirdVentricle_R_y101",
+      "name": "ThirdVentricley101",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "499": {
+      "id": 499,
+      "raw": "ThirdVentricle_L_y102",
+      "name": "ThirdVentricley102",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "500": {
+      "id": 500,
+      "raw": "ThirdVentricle_R_y102",
+      "name": "ThirdVentricley102",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "501": {
+      "id": 501,
+      "raw": "ThirdVentricle_L_y103",
+      "name": "ThirdVentricley103",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "502": {
+      "id": 502,
+      "raw": "ThirdVentricle_R_y103",
+      "name": "ThirdVentricley103",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "503": {
+      "id": 503,
+      "raw": "ThirdVentricle_L_y104",
+      "name": "ThirdVentricley104",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "504": {
+      "id": 504,
+      "raw": "ThirdVentricle_R_y104",
+      "name": "ThirdVentricley104",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "505": {
+      "id": 505,
+      "raw": "ThirdVentricle_L_y105",
+      "name": "ThirdVentricley105",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "506": {
+      "id": 506,
+      "raw": "ThirdVentricle_R_y105",
+      "name": "ThirdVentricley105",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "507": {
+      "id": 507,
+      "raw": "ThirdVentricle_L_y106",
+      "name": "ThirdVentricley106",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "508": {
+      "id": 508,
+      "raw": "ThirdVentricle_R_y106",
+      "name": "ThirdVentricley106",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "509": {
+      "id": 509,
+      "raw": "ThirdVentricle_L_y107",
+      "name": "ThirdVentricley107",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "510": {
+      "id": 510,
+      "raw": "ThirdVentricle_R_y107",
+      "name": "ThirdVentricley107",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "511": {
+      "id": 511,
+      "raw": "ThirdVentricle_L_y108",
+      "name": "ThirdVentricley108",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "512": {
+      "id": 512,
+      "raw": "ThirdVentricle_R_y108",
+      "name": "ThirdVentricley108",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "513": {
+      "id": 513,
+      "raw": "ThirdVentricle_L_y109",
+      "name": "ThirdVentricley109",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "514": {
+      "id": 514,
+      "raw": "ThirdVentricle_R_y109",
+      "name": "ThirdVentricley109",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "515": {
+      "id": 515,
+      "raw": "ThirdVentricle_L_y110",
+      "name": "ThirdVentricley110",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "516": {
+      "id": 516,
+      "raw": "ThirdVentricle_R_y110",
+      "name": "ThirdVentricley110",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "517": {
+      "id": 517,
+      "raw": "ThirdVentricle_L_y111",
+      "name": "ThirdVentricley111",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "518": {
+      "id": 518,
+      "raw": "ThirdVentricle_R_y111",
+      "name": "ThirdVentricley111",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "519": {
+      "id": 519,
+      "raw": "ThirdVentricle_L_y112",
+      "name": "ThirdVentricley112",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "520": {
+      "id": 520,
+      "raw": "ThirdVentricle_R_y112",
+      "name": "ThirdVentricley112",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "521": {
+      "id": 521,
+      "raw": "ThirdVentricle_L_y113",
+      "name": "ThirdVentricley113",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "522": {
+      "id": 522,
+      "raw": "ThirdVentricle_R_y113",
+      "name": "ThirdVentricley113",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "523": {
+      "id": 523,
+      "raw": "ThirdVentricle_L_y114",
+      "name": "ThirdVentricley114",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "524": {
+      "id": 524,
+      "raw": "ThirdVentricle_R_y114",
+      "name": "ThirdVentricley114",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "525": {
+      "id": 525,
+      "raw": "ThirdVentricle_L_y115",
+      "name": "ThirdVentricley115",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "526": {
+      "id": 526,
+      "raw": "ThirdVentricle_R_y115",
+      "name": "ThirdVentricley115",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "527": {
+      "id": 527,
+      "raw": "ThirdVentricle_L_y116",
+      "name": "ThirdVentricley116",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "528": {
+      "id": 528,
+      "raw": "ThirdVentricle_R_y116",
+      "name": "ThirdVentricley116",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "529": {
+      "id": 529,
+      "raw": "ThirdVentricle_L_y117",
+      "name": "ThirdVentricley117",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "530": {
+      "id": 530,
+      "raw": "ThirdVentricle_R_y117",
+      "name": "ThirdVentricley117",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "531": {
+      "id": 531,
+      "raw": "ThirdVentricle_L_y118",
+      "name": "ThirdVentricley118",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "532": {
+      "id": 532,
+      "raw": "ThirdVentricle_R_y118",
+      "name": "ThirdVentricley118",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "533": {
+      "id": 533,
+      "raw": "ThirdVentricle_L_y119",
+      "name": "ThirdVentricley119",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "534": {
+      "id": 534,
+      "raw": "ThirdVentricle_R_y119",
+      "name": "ThirdVentricley119",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "535": {
+      "id": 535,
+      "raw": "ThirdVentricle_L_y120",
+      "name": "ThirdVentricley120",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "536": {
+      "id": 536,
+      "raw": "ThirdVentricle_R_y120",
+      "name": "ThirdVentricley120",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "537": {
+      "id": 537,
+      "raw": "ThirdVentricle_L_y121",
+      "name": "ThirdVentricley121",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "538": {
+      "id": 538,
+      "raw": "ThirdVentricle_R_y121",
+      "name": "ThirdVentricley121",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "539": {
+      "id": 539,
+      "raw": "ThirdVentricle_L_y122",
+      "name": "ThirdVentricley122",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "540": {
+      "id": 540,
+      "raw": "ThirdVentricle_R_y122",
+      "name": "ThirdVentricley122",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "541": {
+      "id": 541,
+      "raw": "ThirdVentricle_L_y123",
+      "name": "ThirdVentricley123",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "542": {
+      "id": 542,
+      "raw": "ThirdVentricle_R_y123",
+      "name": "ThirdVentricley123",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "543": {
+      "id": 543,
+      "raw": "ThirdVentricle_L_y124",
+      "name": "ThirdVentricley124",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "544": {
+      "id": 544,
+      "raw": "ThirdVentricle_R_y124",
+      "name": "ThirdVentricley124",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "545": {
+      "id": 545,
+      "raw": "ThirdVentricle_L_y125",
+      "name": "ThirdVentricley125",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "546": {
+      "id": 546,
+      "raw": "ThirdVentricle_R_y125",
+      "name": "ThirdVentricley125",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "547": {
+      "id": 547,
+      "raw": "ThirdVentricle_L_y126",
+      "name": "ThirdVentricley126",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "548": {
+      "id": 548,
+      "raw": "ThirdVentricle_R_y126",
+      "name": "ThirdVentricley126",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "549": {
+      "id": 549,
+      "raw": "ThirdVentricle_L_y127",
+      "name": "ThirdVentricley127",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "550": {
+      "id": 550,
+      "raw": "ThirdVentricle_R_y127",
+      "name": "ThirdVentricley127",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "552": {
+      "id": 552,
+      "raw": "ThirdVentricle_R_y128",
+      "name": "ThirdVentricley128",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "553": {
+      "id": 553,
+      "raw": "ThirdVentricle_L_y129",
+      "name": "ThirdVentricley129",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "554": {
+      "id": 554,
+      "raw": "ThirdVentricle_R_y129",
+      "name": "ThirdVentricley129",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "555": {
+      "id": 555,
+      "raw": "ThirdVentricle_L_y130",
+      "name": "ThirdVentricley130",
+      "hemisphere": "Left",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "556": {
+      "id": 556,
+      "raw": "ThirdVentricle_R_y130",
+      "name": "ThirdVentricley130",
+      "hemisphere": "Right",
+      "lobe": "Ventricular System",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "581": {
+      "id": 581,
+      "raw": "CorpusCallosum_AP_0",
+      "name": "CorpusCallosum AP 0",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "582": {
+      "id": 582,
+      "raw": "CorpusCallosum_AP_1",
+      "name": "CorpusCallosum AP 1",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "583": {
+      "id": 583,
+      "raw": "CorpusCallosum_AP_2",
+      "name": "CorpusCallosum AP 2",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "584": {
+      "id": 584,
+      "raw": "CorpusCallosum_AP_3",
+      "name": "CorpusCallosum AP 3",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "585": {
+      "id": 585,
+      "raw": "CorpusCallosum_AP_4",
+      "name": "CorpusCallosum AP 4",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "586": {
+      "id": 586,
+      "raw": "CorpusCallosum_AP_5",
+      "name": "CorpusCallosum AP 5",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "587": {
+      "id": 587,
+      "raw": "CorpusCallosum_AP_6",
+      "name": "CorpusCallosum AP 6",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "588": {
+      "id": 588,
+      "raw": "CorpusCallosum_AP_7",
+      "name": "CorpusCallosum AP 7",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "589": {
+      "id": 589,
+      "raw": "CorpusCallosum_AP_8",
+      "name": "CorpusCallosum AP 8",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "591": {
+      "id": 591,
+      "raw": "Pons_x127",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "592": {
+      "id": 592,
+      "raw": "Pons_x126",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "593": {
+      "id": 593,
+      "raw": "Pons_x125",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "594": {
+      "id": 594,
+      "raw": "Pons_x124",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "595": {
+      "id": 595,
+      "raw": "Pons_x123",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "596": {
+      "id": 596,
+      "raw": "Pons_x122",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "597": {
+      "id": 597,
+      "raw": "Pons_x121",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "598": {
+      "id": 598,
+      "raw": "Pons_x120",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "599": {
+      "id": 599,
+      "raw": "Pons_x119",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "600": {
+      "id": 600,
+      "raw": "Pons_x118",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "601": {
+      "id": 601,
+      "raw": "Pons_x117",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "602": {
+      "id": 602,
+      "raw": "Pons_x116",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "603": {
+      "id": 603,
+      "raw": "Pons_x115",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "604": {
+      "id": 604,
+      "raw": "Pons_x114",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "605": {
+      "id": 605,
+      "raw": "Pons_x113",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "606": {
+      "id": 606,
+      "raw": "Pons_x112",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    },
+    "607": {
+      "id": 607,
+      "raw": "Pons_x111",
+      "name": "Pons",
+      "hemisphere": null,
+      "lobe": "Brainstem / White Matter",
+      "source_atlas": "SRI24 (TZO116+)"
+    }
+  }
+}

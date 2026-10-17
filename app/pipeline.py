@@ -2,6 +2,7 @@
 Background processing pipeline for NeuroScope 3D.
 Sequentially executes Validation -> Segmentation -> Volumetrics -> 3D Meshing.
 """
+import json
 import time
 from pathlib import Path
 from typing import Dict, Any, Optional
@@ -18,6 +19,7 @@ from app.volumes import (
     get_region_masks
 )
 from app.meshes import generate_case_meshes
+from app.anatomy import resample_atlas_for_case, compute_region_involvement
 from app.db import update_case_stage, save_case_results
 
 
@@ -52,6 +54,7 @@ def run_case_pipeline(case_id: str, segmenter: Any, git_commit: str = "local") -
         # Validate 4 sequences
         loaded = validate_set(paths)
         ref_img, t1_data = loaded["t1"]
+        _, t1gd_data = loaded["t1gd"]
         affine = ref_img.affine
         
         # Non-refusing sanity heuristics
@@ -70,7 +73,8 @@ def run_case_pipeline(case_id: str, segmenter: Any, git_commit: str = "local") -
         spatial_meta = {
             "shape": list(ref_img.shape),
             "zooms": [round(float(z), 3) for z in ref_img.header.get_zooms()[:3]],
-            "voxel_volume_mm3": det_vol
+            "voxel_volume_mm3": det_vol,
+            "affine": ref_img.affine.tolist()
         }
         update_case_stage(case_id, status="processing", stage="validating", spatial_meta=spatial_meta, warnings=warnings)
         stage_seconds["validating"] = round(time.time() - t0, 3)
@@ -101,6 +105,53 @@ def run_case_pipeline(case_id: str, segmenter: Any, git_commit: str = "local") -
         masks = get_region_masks(pred_data)
         laterality = determine_laterality(masks["WT"], brain_mask, affine)
         
+        # Anatomical Atlas Resampling & Regional Tumour Involvement
+        anatomy_nii = case_dir / "anatomy.nii.gz"
+        anatomy_json = case_dir / "anatomy_lookup.json"
+        anatomy_meta = resample_atlas_for_case(ref_img, t1_data, anatomy_nii, anatomy_json)
+        anat_data = None
+        
+        if anatomy_meta.get("status") == "available" and anatomy_nii.exists():
+            anat_img = nib.load(str(anatomy_nii))
+            anat_data = np.asanyarray(anat_img.dataobj).astype(np.int16)
+            region_involvement = compute_region_involvement(pred_data, anat_data, det_vol, anatomy_meta)
+            anatomy_meta["region_involvement"] = region_involvement
+            # Persist updated json with region involvement
+            anatomy_json.write_text(json.dumps(anatomy_meta, indent=2), encoding="utf-8")
+        else:
+            anatomy_meta["region_involvement"] = []
+
+        # Anatomical Localization (Mode A or Mode B, with 3 Answer Cards)
+        localization_data = None
+        try:
+            from app.localization.anatomical_mapper import AnatomicalMapper
+            from app.localization.report_generator import generate_localization_report_text
+            loc_mapper = AnatomicalMapper()
+            loc_res = loc_mapper.localize_case(
+                pred_data=pred_data,
+                t1gd_data=t1gd_data,
+                affine=affine,
+                header=ref_img.header
+            )
+            loc_dict = loc_res.to_dict()
+            loc_dict["report_sentences"] = generate_localization_report_text(loc_dict)
+            localization_data = loc_dict
+            loc_json = case_dir / "localization.json"
+            loc_json.write_text(json.dumps(localization_data, indent=2), encoding="utf-8")
+        except Exception as loc_err:
+            localization_data = {
+                "status": "unavailable",
+                "mode": "Mode B (Coarse Geometric Fallback)",
+                "quality_message": f"Localization computation error: {loc_err}",
+                "overlap_dice": 0.0,
+                "space_check": {"error": str(loc_err)},
+                "answer_cards": {},
+                "table": [],
+                "primary_regions": {"WT": None, "TC": None, "ET": None},
+                "secondary_regions": {"WT": [], "TC": [], "ET": []},
+                "warnings": [str(loc_err)]
+            }
+
         # Expert mask metrics (if provided)
         expert_volumes = None
         agreement = None
@@ -114,7 +165,7 @@ def run_case_pipeline(case_id: str, segmenter: Any, git_commit: str = "local") -
         t0 = time.time()
         update_case_stage(case_id, status="processing", stage="meshing")
         
-        generate_case_meshes(pred_data, t1_data, affine, mesh_dir)
+        generate_case_meshes(pred_data, t1_data, affine, mesh_dir, anat_data=anat_data)
         stage_seconds["meshing"] = round(time.time() - t0, 3)
         
         # ================= STAGE 5: COMMIT RESULTS =================
@@ -132,7 +183,9 @@ def run_case_pipeline(case_id: str, segmenter: Any, git_commit: str = "local") -
             model_info=model_info,
             commit_hash=git_commit,
             expert_volumes=expert_volumes,
-            agreement=agreement
+            agreement=agreement,
+            anatomy=anatomy_meta,
+            localization=localization_data
         )
         
         update_case_stage(

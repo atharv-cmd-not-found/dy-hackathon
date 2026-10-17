@@ -31,12 +31,159 @@ def generate_html_report(case: Dict[str, Any]) -> str:
     
     volumes = case.get("volumes", {})
     laterality = case.get("laterality", {})
-    model_info = case.get("model", {})
+    results_obj = case.get("results") or {}
+    anatomy = case.get("anatomy") or results_obj.get("anatomy") or {}
+    if not anatomy and case_id != "Unknown":
+        from app.config import CASES_DIR
+        lookup_p = CASES_DIR / case_id / "anatomy_lookup.json"
+        if lookup_p.exists():
+            import json
+            try:
+                anatomy = json.loads(lookup_p.read_text(encoding="utf-8"))
+            except Exception:
+                anatomy = {}
+    model_info = case.get("model") or results_obj.get("model_info") or {}
     stage_seconds = case.get("stage_seconds", {})
     warnings = case.get("warnings", [])
     agreement = case.get("agreement", {})
     
     total_time = sum(stage_seconds.values()) if stage_seconds else 0.0
+
+    # Build anatomical involvement rows if available
+    involvement_rows = ""
+    inv_list = anatomy.get("region_involvement", [])
+    if inv_list:
+        for reg in inv_list[:8]:  # Top 8 involved structures
+            hemi = reg.get("hemisphere") or "Midline"
+            involvement_rows += f"""
+        <tr>
+          <td><strong>{reg.get('name', 'Unknown')}</strong> (ID #{reg.get('id', '-')})</td>
+          <td><span class="pill pill-blue">{hemi}</span></td>
+          <td>{reg.get('lobe', 'Subcortical')}</td>
+          <td class="mono"><strong>{reg.get('tumor_volume_ml', 0.0):.3f} mL</strong></td>
+          <td class="mono">{reg.get('pct_of_region_involved', 0.0):.1f}%</td>
+          <td class="mono">{reg.get('pct_of_total_tumor', 0.0):.1f}%</td>
+        </tr>"""
+    
+    anatomy_section_html = ""
+    if anatomy.get("status") == "available" and involvement_rows:
+        anatomy_section_html = f"""
+    <!-- Anatomical Brain Region Involvement (SRI24 Template) -->
+    <h2>4. Anatomical Structure Involvement (Atlas-Derived Approximation)</h2>
+    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.65rem 0.85rem; font-size: 11px; color: #1e40af; margin-bottom: 0.65rem;">
+      <strong>ATLAS-DERIVED ANATOMY — approximate</strong>. Estimated overlap computed by resampling the SRI24 normative atlas (TZO116+ parcellation, CC BY-SA 3.0) onto this patient's MRI grid. Tumours distort local geometry; anatomical boundaries near the lesion are approximate.
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Anatomical Structure</th>
+          <th>Hemisphere</th>
+          <th>Lobe / Compartment</th>
+          <th>Overlap Vol (mL)</th>
+          <th>% Structure Involved</th>
+          <th>Share of WT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {involvement_rows}
+      </tbody>
+    </table>
+"""
+    elif anatomy.get("status") == "unavailable":
+        anatomy_section_html = f"""
+    <!-- Anatomical Brain Region Involvement -->
+    <h2>4. Anatomical Structure Involvement</h2>
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.75rem 1rem; font-size: 12px; color: #64748b;">
+      <strong>Anatomical labels unavailable</strong>: {anatomy.get('message', 'Scan is not registered to SRI24 template space.')}
+    </div>
+"""
+
+    # Build Anatomical Localization & Answer Cards Section
+    localization = case.get("localization") or results_obj.get("localization") or {}
+    if not localization and case_id != "Unknown":
+        from app.config import CASES_DIR
+        loc_p = CASES_DIR / case_id / "localization.json"
+        if loc_p.exists():
+            import json
+            try:
+                localization = json.loads(loc_p.read_text(encoding="utf-8"))
+            except Exception:
+                localization = {}
+
+    loc_status = localization.get("status", "unavailable")
+    loc_mode = localization.get("mode", "Mode B (Coarse Geometric Fallback)")
+    answer_cards = localization.get("answer_cards", {})
+    card1 = answer_cards.get("card_one_mass_or_several", {})
+    card2 = answer_cards.get("card_which_side", {})
+    card3 = answer_cards.get("card_how_big", {})
+    rep_sentences = localization.get("report_sentences", {})
+    table_rows_data = localization.get("table", [])
+
+    loc_table_rows_html = ""
+    for row in table_rows_data:
+        loc_table_rows_html += f"""
+        <tr>
+          <td><strong>{row.get('region', 'Unknown')}</strong></td>
+          <td class="mono">{row.get('wt_pct', 0.0):.1f}%</td>
+          <td class="mono">{row.get('wt_ml', 0.0):.3f} mL</td>
+          <td class="mono">{row.get('tc_pct', 0.0):.1f}%</td>
+          <td class="mono">{row.get('tc_ml', 0.0):.3f} mL</td>
+          <td class="mono">{row.get('et_pct', 0.0):.1f}%</td>
+          <td class="mono">{row.get('et_ml', 0.0):.3f} mL</td>
+        </tr>"""
+
+    loc_table_html = ""
+    if loc_table_rows_html:
+        loc_table_html = f"""
+    <table class="data-table" style="margin-top: 0.5rem;">
+      <thead>
+        <tr>
+          <th>Anatomical Region</th>
+          <th>WT %</th>
+          <th>WT (mL)</th>
+          <th>TC %</th>
+          <th>TC (mL)</th>
+          <th>ET %</th>
+          <th>ET (mL)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {loc_table_rows_html}
+      </tbody>
+    </table>"""
+
+    localization_section_html = f"""
+    <!-- Anatomical Localization & Answer Cards -->
+    <h2>5. Anatomical Localization & Answer Cards</h2>
+    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 0.65rem 0.85rem; font-size: 11px; color: #1e40af; margin-bottom: 0.75rem;">
+      <strong>Anatomical localization is an approximate research-use estimate derived from model-predicted voxels and atlas overlap. It is not a clinical diagnosis and may be inaccurate.</strong>
+    </div>
+
+    <!-- 3 Answer Cards -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 0.85rem;">
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.75rem;">
+        <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700;">1. One Mass or Several?</div>
+        <div style="font-size: 12px; font-weight: 600; color: #0284c7; margin-top: 0.25rem;">{card1.get('summary', 'N/A')}</div>
+      </div>
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.75rem;">
+        <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700;">2. Which Side?</div>
+        <div style="font-size: 12px; font-weight: 600; color: #0284c7; margin-top: 0.25rem;">{card2.get('summary', 'N/A')}</div>
+      </div>
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.75rem;">
+        <div style="font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 700;">3. How Big?</div>
+        <div style="font-size: 11px; font-weight: 500; color: #334155; margin-top: 0.25rem;">{card3.get('summary', 'N/A')}</div>
+      </div>
+    </div>
+
+    <!-- Summary Paragraphs -->
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.85rem; margin-bottom: 0.85rem; font-size: 12px; line-height: 1.6;">
+      <p style="margin-bottom: 0.4rem;"><strong>Whole-Tumour (WT):</strong> {rep_sentences.get('wt_paragraph', 'N/A')}</p>
+      <p style="margin-bottom: 0.4rem;"><strong>Tumour Core (TC):</strong> {rep_sentences.get('tc_paragraph', 'N/A')}</p>
+      <p><strong>Enhancing Tumour (ET):</strong> {rep_sentences.get('et_paragraph', 'N/A')}</p>
+    </div>
+
+    {loc_table_html}
+"""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -397,8 +544,11 @@ def generate_html_report(case: Dict[str, Any]) -> str:
       </div>
     </div>
 
+    <!-- Anatomical Localization & Answer Cards -->
+    {localization_section_html}
+
     <!-- Model Provenance -->
-    <h2>5. Model Provenance & Pipeline Lineage</h2>
+    <h2>6. Model Provenance & Pipeline Lineage</h2>
     <table class="data-table">
       <thead>
         <tr>
